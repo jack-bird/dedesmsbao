@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>{dede:global.cfg_webname/}官网</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/index.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/jsbn.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/prng4.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/rng.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/rsa.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/base64.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/common.js"></script>
+    <script type="text/javascript" src="/style_sb/js/sub_column.js"></script>
+    <script type="text/javascript" src="/style_sb/js/shuffle_banner.js"></script>
+    <script type="text/javascript" src="/style_sb/js/html5.min.js"></script>
+    <script type="text/javascript" src="/style_sb/js/base.js"></script>
+
+<script>
+    $(function() {
+        $.ajax({
+            "url" : "/setting.php",
+            "type" : "get",
+            "data" : null,
+            "success" : function(){}
+        });
+    });
+
+</script>
+<script type="text/javascript">
+$().ready(function() {
+
+var $loginForm = $("#loginForm");
+var $username = $("#username");
+var $password = $("#password");
+var $submit = $("#login-submit");
+	// 订单提交
+	$submit.click(function() {
+               $.ajax({
+				url: "/common/public_key.jhtml",
+				type: "GET",
+				dataType: "json",
+				cache: false,
+				beforeSend: function() {
+					$submit.prop("disabled", true);
+				},
+				success: function(data) {
+					var rsaKey = new RSAKey();
+					rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+					var enPassword = hex2b64(rsaKey.encrypt($password.val()));
+					$.ajax({
+						url: $loginForm.attr("action"),
+						type: "POST",
+						data: {
+							username: $username.val(),
+							enPassword: enPassword
+						},
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							$submit.prop("disabled", false);
+							if (message.type == "success") {
+								location.href = "/member/index.jhtml";
+							} else {
+								location.href = "/login.jhtml?errorInfo="+encodeURI(message.content)+"&username="+$username.val();							}
+						           }
+					});
+				}
+			});
+
+
+           });
+});
+</script>
+<script type="text/javascript">
+(function($) {
+
+  var placeholderfriend = {
+    focus: function(s) {
+      s = $(s).hide().prev().show().focus();
+      var idValue = s.attr("id");
+      if (idValue) {
+        s.attr("id", idValue.replace("placeholderfriend", ""));
+      }
+      var clsValue = s.attr("class");
+	  if (clsValue) {
+        s.attr("class", clsValue.replace("placeholderfriend", ""));
+      }
+    }
+  }
+
+  //判断是否支持placeholder
+  function isPlaceholer() {
+    var input = document.createElement('input');
+    return "placeholder" in input;
+  }
+  //不支持的代码
+  if (!isPlaceholer()) {
+    $(function() {
+
+      var form = $(this);
+
+      //遍历所有文本框，添加placeholder模拟事件
+      var elements = form.find("input[type='text'][placeholder],textarea[placeholder]");
+
+      if (elements.length !== 0) {
+      $.each(elements, function(i) {
+        var s = $(this);
+        var pValue = s.attr("placeholder");
+		var sValue = s.val();
+		var isUserEnter = 0; // 是否为用户输入内容,placeholder允许用户的输入和默认内容一样
+        if (pValue) {
+          if (sValue == '') {
+            s.val(pValue);
+          }
+        }
+
+       $(this)
+       .focus(function() {
+        var s = $(this);
+        var pValue = s.attr("placeholder");
+		var sValue = s.val();
+        if (sValue && pValue) {
+          if (sValue == pValue && !isUserEnter) {
+            s.val('');
+          }
+        }
+      })
+      .blur(function() {
+        var s = $(this);
+        var pValue = s.attr("placeholder");
+		var sValue = s.val();
+        if (!sValue) {
+          s.val(pValue);
+          isUserEnter = 0;
+        }
+      })
+      .keyup(function(){
+      	if ($(this).val() !== pValue) isUserEnter = 1;
+	  });
+
+
+	  });
+	  }
+      //遍历所有密码框，添加placeholder模拟事件
+      var elementsPass = form.find("input[type='password'][placeholder]");
+      elementsPass.each(function(i) {
+        var s = $(this);
+        var pValue = s.attr("placeholder");
+		var sValue = s.val();
+        if (pValue) {
+          if (sValue == '') {
+            //DOM不支持type的修改，需要复制密码框属性，生成新的DOM
+            var html = this.outerHTML || "";
+            html = html.replace(/\s*type=(['"])?password\1/gi, " type=text placeholderfriend")
+              .replace(/\s*(?:value|on[a-z]+|name)(=(['"])?\S*\1)?/gi, " ")
+              .replace(/\s*placeholderfriend/, " placeholderfriend value='" + pValue
+              + "' " + "onfocus='placeholderfriendfocus(this);' ");
+            var idValue = s.attr("id");
+            if (idValue) {
+              s.attr("id", idValue + "placeholderfriend");
+            }
+            var clsValue = s.attr("class");
+			if (clsValue) {
+              s.attr("class", clsValue + "placeholderfriend");
+            }
+            s.hide();
+            s.after(html);
+          }
+        }
+      });
+
+      elementsPass.blur(function() {
+        var s = $(this);
+        var sValue = s.val();
+        if (sValue == '') {
+          var idValue = s.attr("id");
+          if (idValue) {
+            s.attr("id", idValue + "placeholderfriend");
+          }
+          var clsValue = s.attr("class");
+		  if (clsValue) {
+            s.attr("class", clsValue + "placeholderfriend");
+          }
+          s.hide().next().show();
+        }
+
+      });
+
+    });
+  }
+  window.placeholderfriendfocus = placeholderfriend.focus;
+})(jQuery);
+</script>
+</head>
+<body  class="index">
+<div  class="wrapper">
+<!--header -->
+<div  class="top-bar ">
+<div  class="webContainer">
+    <div  class="top-box">
+        <ul  class="contact-bar">
+            <li  class="tel last">400-716-3021</li>
+        </ul>
+        <ul id="current_member" class="user-bar" style="float:right">
+            <li  class="active first"><a  href="/login">登录</a></li>
+            <li  class="last"><a  href="/reg">注册</a></li>
+        </ul>
+        <!--
+        <div class="search">
+            <form  name="formsearch" action="{dede:global.cfg_cmsurl/}/plus/search.php">
+                <div class="form">
+                    <input type="hidden" name="kwtype" value="0" />
+                    <input id="search-option" type="hidden" name="searchtype" value="title" />
+                    <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+                    <button type="submit" class="search-submit"></button>
+                </div>
+            </form>
+        </div>
+        -->
+    </div>
+</div>
+</div>
+<script>
+    $(function() {
+        $(".user-bar li").hover(function() {
+            $(this).find('ul').show();
+        }, function() {
+            $(this).find('ul').hide();
+        });
+        $(".language-bar li").hover(function() {
+            $(this).find('div').show();
+        }, function() {
+            $(this).find('div').hide();
+        });
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+var $login_box = $("#login_box");
+
+					$.ajax({
+                        url: "/common/current_member.jhtml",
+						//url: "http://www.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+                                                           $login_box.html("<div class='login-welcome'><h2 class='mr9'>欢迎您来到短信宝</h2><h3 class='mr9'>体验最好用的短信服务</h3></div><form class='login-form'><div class='login-btn-box'><h3 class='mr9'>您的短信宝账号是："+message.username+"</h3></div><a href='/member/index.jhtml'' class='web_sms_l_btn_h'>进入我的短信宝</a></form><div class='bottom-reg'></div>");
+
+							}
+                                                }
+					});
+
+});
+</script>
+
+
+
+    <div id="nav">
+        <div class="nav_main">
+            <div class="nav_main_div"><a href="/"><img src="images/logo.png" /></a></div>
+            <ul class="nav_main_ul_one">
+
+                <li class="nav_item"><a href="/">首 页</a></li>
+                <li class="nav_item show_column">
+                    <a href="javascript:void(0);">黑板报</a>
+                    <ul class="columnShow-inline">
+                        <li>
+                            <h3><a href="/buzz" target="_blank">谁 在 用</a></h3>
+                        </li>
+
+                        <li>
+                            <h3><a href="/application" target="_blank">干货分享</a></h3>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav_item"><a href="/help">使用指南</a></li>
+                <li class="nav_item"><a href="/openapi">短信接口</a></li>
+                <li class="nav_item"><a href="/plugin">建站插件</a></li>
+                <li class="nav_item"><a href="/joinin">合作联盟</a></li>
+                <li class="nav_item"><a href="/fee">资费标准</a></li>
+            </ul>
+        </div>
+    </div>
+
+<script>
+    var pageIdentify = 'menu{dede:field.typeid/}';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>
+
+<!--主体内容开始-->
+    <section class="banner">
+        <div class="flashBox">
+            <ul>
+                <li>
+                    <div class="pic" style=" background-image: url(images/banner/1.png); background-color: #faaf4c">
+                        <div class="banner-text">
+                            <h3>玩转短信</h3>
+                            <dl>
+                                <dt>抛弃垃圾通道</dt>
+                                <dd>速度太慢？我们的发送速度：36万条/小时！</dd>
+                                <dd>到达率低？我们的短信到达率：99%！</dd>
+                                <dd>全网不覆盖？我们一点支持三大运营商多种短信通讯协议！</dd>
+                                <dd>乱扣费？我们真实透明展示全过程！</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic" style="background-image: url(images/banner/2.png); background-color: #faaf4c">
+                        <div class="banner-text">
+                            <h3>插件支持丰富</h3>
+                            <dl>
+                                <dt>您需要的我们都已经做好了。</dt>
+                                <dd>针对市场上所有主流web程序，开发短信插件。</dd>
+                                <dd>插件安装简单，只需覆盖源文件即可完成。</dd>
+                                <dd>方便对技术不熟悉的用户使用。</dd>
+                                <dd><a href="/plugin">More</a></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic" style="background-image: url(images/banner/3.png); background-color: #faaf4c">
+                        <div class="banner-text">
+                            <h3>开放接口</h3>
+                            <dl>
+                                <dt>与您的网站无缝对接</dt>
+                                <dd>标准的HTTP短信开放接口</dd>
+                                <dd>让您的网站迅速完成短信接入工作</dd>
+                                <dd>提供C#、ASP、JAVA、PHP等多种语言演示案例</dd>
+                                <dd><a href="/openapi">More</a></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic" style="background-image: url(images/banner/4.png);  background-color: #faaf4c">
+                        <div class="banner-text">
+                            <h3>发送通道多样化</h3>
+                            <dl>
+                                <dt>内容覆盖所有的行业需求。</dt>
+                                <dd>验证码短信 - 3~5秒极速送达，提高用户体验度。</dd>
+                                <dd>祝福短信 - 把您的关怀，随时送到客户心中。</dd>
+                                <dd>通知短信 - 精准的送达，让您的客户及时获知。</dd>
+                                <dd>营销短信 - 高密度覆盖，您的客户遍布天下。</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <ol>
+                <li class=""></li>
+                <li class=""></li>
+                <li class=""></li>
+                <li class=""></li>
+            </ol>
+        </div>
+
+        <div id="login_box" class="login-box clear">
+            <div class="login-welcome">
+                <h2 class="mr9">欢迎您来到短信宝</h2>
+                <h3 class="mr9">体验最好用的短信服务</h3>
+            </div>
+            <form id="loginForm" class="login-form" method="post" action="/login/submit.jhtml">
+                <div class="form-input">
+                    <div class="input-l"></div>
+                    <div class="user-icon">
+                        <span></span>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="username" id="username" placeholder="请输入您的用户名">
+                    </div>
+                </div>
+                <div class="form-input">
+                    <div class="input-l"></div>
+                    <div class="pass-icon">
+                        <span></span>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" name="password" id="password" placeholder="请填写密码">
+                    </div>
+                </div>
+                <div class="login-btn-box">
+                    <a href="/password/find.jhtml" class="forget">忘记密码？</a>
+                    <a href="javascript:;" id="login-submit" class="login-btn" data-loading-text="Loading">登录</a>
+                </div>
+                <div class="tips">
+                </div>
+            </form>
+            <div class="bottom-reg">
+                <a href="/reg">立即注册</a>
+            </div>
+        </div>
+        <div class="webProIntro"></div>
+    </section>
+
+
+    <div class="share-box pt20">
+        <div class="webContainer">
+            <div class="content">
+                <div class="share-l web_news_box">
+                    <div class="clearfix">
+                        <h3 class="artical-title" >干货分享</h3>
+                        <div class="first_text">
+                            {dede:arclist typeid=48 limit='0,1' flag='h' titlelen=100 infolen='500' imgwidth='242' imgheight='150' orderby='pubdate' }
+                            <h3><a href="[field:arcurl/]" target="_blank">[field:title/]</a></h3>
+                            <div class="first_text_left">
+                                [field:image/]
+                            </div>
+                            <div class="first_text_right">
+                                <p>[field:info/]...</p>
+                            </div>
+                            {/dede:arclist}
+                        </div>
+
+                        {dede:arclist typeid=48 limit='0,5' noflag='h'  titlelen=60 infolen=110 orderby='pubdate' }
+                        <dl class="news_box">
+                            <dt><a href="[field:arcurl/]" target="_blank">[field:title/]</a></dt>
+                            <dd><a href="[field:arcurl/]" target="_blank"> [field:info/]...</a></dd>
+                        </dl>
+                        {/dede:arclist}
+
+                    </div>
+                </div>
+
+
+                <div class="share-r">
+                    <div id="sidebar" class="fix">
+                        <div id="widgets" class="intro">
+
+                            <div id="text-8" class="widget_text widget"><div class="winner"><h4 class="wtitle">腾讯微博  t.qq.com/smsbao</h4>
+                                <div class="textwidget"><iframe frameborder="0" scrolling="no" src="http://v.t.qq.com/show/show.php?n=smsbao&amp;w=312&amp;h=550&amp;fl=2&amp;l=6&amp;o=17&amp;c=4&amp;si=e69f8982e9c1b3160f91fc328ea9e067c8b857e3&amp;cs=000000_F1F1F1_000000_F1F1F1" width="312" height="550"></iframe></div>
+                                &nbsp;</div></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="creat_plug">
+        <h3 class="artical-title" style="margin:5px 0 0 0; clear:both;">建站插件</h3>
+        <ul id="plug">
+            {dede:arclist typeid=35 limit='0,20' titlelen=60 infolen=110 orderby='pubdate' }
+            <li><a href="[field:arcurl/]">[field:title/]</a></li>
+            {/dede:arclist}
+        </ul>
+    </div>
+
+    <div style="clear:both; height:35px;"></div>
+
+<div  class="main-box">
+
+
+    <div  class="share-box">
+        <div  class="webContainer">
+            <div  class="content">
+            	<dl class="web_home_link_box">
+                	<dt>已经有超过<em>9000</em>个网站，正在使用短信宝服务</dt>
+                    <dd class="clearfix">
+                     {dede:flink row='8' type='image' titlelen="24" typeid="1"}
+                     [field:link /]
+                     {/dede:flink}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<div  class="clear"></div>
+<!--主体内容结束-->
+
+
+<!--<script  type="text/javascript">-->
+<!--//    banner-->
+    <!--$(function() {-->
+        <!--function changeBanner(index) {-->
+            <!--var banners = [];-->
+            <!--banners.push('style_sb/images/banner.jpg');-->
+            <!--banners.push('style_sb/images/banner1.jpg');-->
+            <!--banners.push('style_sb/images/banner2.jpg');-->
+            <!--banners.push('style_sb/images/banner3.jpg');-->
+            <!--//console.log(index);-->
+            <!--if (index == null) {-->
+                <!--index = parseInt($('.banner').attr('alt'));-->
+            <!--}-->
+            <!--var bannerLength = banners.length;-->
+            <!--var next = 0;-->
+            <!--if (index == (bannerLength - 1)) {-->
+                <!--next = 0;-->
+            <!--} else {-->
+                <!--next = index + 1;-->
+            <!--}-->
+            <!--$('.banner').css({-->
+                <!--'background': 'url(' + banners[index] + ') center center'-->
+            <!--});-->
+            <!--$('.banner').attr('alt', next);-->
+            <!--$('.pagination li').removeClass('current');-->
+            <!--$('.pagination li').eq(index).addClass('current');-->
+        <!--}-->
+        <!--changeBanner();-->
+        <!--var changeBannerTimes = setInterval(function() {-->
+            <!--changeBanner();-->
+        <!--}, 4000);-->
+        <!--$('.pagination li a').on('click', function() {-->
+            <!--clearInterval(changeBannerTimes);-->
+            <!--var index = parseInt($(this).html());-->
+            <!--changeBanner(index);-->
+            <!--return false;-->
+        <!--});-->
+        <!--$('.index-banner').hover(function() {-->
+            <!--clearInterval(changeBannerTimes);-->
+        <!--}, function() {-->
+            <!--changeBannerTimes = setInterval(function() {-->
+                <!--changeBanner();-->
+            <!--}, 4000);-->
+        <!--});-->
+    <!--});-->
+
+<!--</script>-->
+{dede:include filename="footer.htm"/}
+</div>
+</body></html>

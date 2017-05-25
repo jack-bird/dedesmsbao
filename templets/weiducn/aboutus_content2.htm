@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/style_sb/css/ie.css">
+<![endif]-->
+
+<!--[if lt IE 9]>
+      <script src="/style_sb/js/html5shiv.min.js"></script>
+      <script src="/style_sb/js/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if lt IE 7]>
+<script src="/style_sb/js/DD_belatedPNG.js"></script>
+<script type="text/javascript"> 
+	DD_belatedPNG.fix();
+</script> 
+<![endif]-->
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/right_menu.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/style_sb/js/right_menu.js"></script>
+<script type="text/javascript" src="/style_sb/js/jquery.jscrollpane.min.js"></script>
+    <script>
+        $(function() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+		"dataType" : "text",
+        	"data" : {"win":window.location.href},
+                "success" : function(){}
+            });
+        });
+
+    </script>
+    <style>
+        .about-title {
+            font-size:18px;
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .about-ul {
+            width:950px;
+            height:260px;
+            margin:0 auto;
+        }
+
+        .about-ul li {
+            width:316px;
+            float:left;
+        }
+
+        .about-ul li img {
+            margin:0 auto;
+            display:block;
+
+        }
+    </style>
+</head>
+<body  class="index">
+<div  class="wrapper">
+{dede:include filename="header.htm"/}
+<!--主体内容开始-->
+<div  class="main-box">
+    <div  class="index-banner height150">
+        <div  class="banner height150"  alt="0"  style="background-image: url(/style_sb/images/new_kf_banner_bg.png); background-position: 50% 50%; background-repeat: initial initial;"></div>
+    </div>
+    <div  class="sitecon">
+        <div  class="container">
+            <div  class="about_site">
+                您的位置：{dede:field name='position'/}</div>
+        </div>
+    </div>
+
+    <div class="share-box">
+        <div class="container contSub">
+            <div class="webPageContent">
+                <div class="webOpenapiCon">
+                    <h1 class="webOpenapiTit">关于我们</h1>
+                    <p>短信宝，隶属于上海子橙电子科技有限公司，成立于2012年，公司致力于为客户提供专业的电信增值服务，帮助企业便捷接入验证码短信、短信通知、语音验证码、国际验证码、短信公众号、短信营销、彩信营销、数字奖励营销、手机话费充值、手机流量充值等电信增值服务，满足企业运营、营销推广多场景需要。</p>
+                    <p>本公司经过多年的技术积累与创新，树立在该领域的标杆地位。业务平台及软件全部自主研发，且都通过了国家知识产权认定。公司率先推出行业领先的电信增值业务智能监控报警方案，通过故障自动检测与隔离，让用户在使用电信增值业务时更加安全高效。</p>
+                    <p>本公司核心团队在互联网及通讯行业有十几年的技术研发和运营维护经验，掌握高性能、高并发、大数据处理技术。</p>
+                </div><br>
+                <h3 class="about-title">企业资质</h3>
+                <ul class="about-ul">
+                    <li><img src="/images/yyzz.jpg" alt="营业执照"/></li>
+                    <li><img src="/images/jrdm.jpg" alt="服务接入证"/></li>
+                    <li><img src="/images/zzyw.jpg" alt="增值业务证"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div  class="clear"></div>
+<script>
+    var arcIdentify = 'menuarc{dede:field.id/}';
+    if (arcIdentify) {
+        $("#"+arcIdentify).addClass('active');
+    }
+</script>
+<!--主体内容结束-->
+{dede:include filename="footer.htm"/}
+</div>
+</body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+</head>
+<body  class="index">
+<div  class="wrapper">
+{dede:include filename="header.htm"/}
+
+<!--主体内容开始-->
+<div  class="main-box">
+    <div  class="index-banner height150">
+        <div  class="banner height150"  alt="0"  style="background-image: url(/style_sb/images/pageBannerD.png); background-position: 50% 50%; background-repeat: initial initial;">
+        <div class="bannerSecBox">
+          <div class="bannerImg"><img src="/style_sb/images/bannerCjImg.png" /></div>
+          <dl class="bannerDl">
+            <dt class="bannerDlTit">开源插件</dt>
+            <dd class="bannerDlIntro">最土团购程序短信插件</dd>
+          </dl>
+        </div>
+    </div>
+    </div>
+    <div  class="share-box">
+        <div class="container">
+	<div class="webTopMenuBg">
+            <ul class="webOpenapiMenu">
+                {dede:list row='10' pagesize='10' titlelen='240'}
+                   <li class="cur"><a href="[field:arcurl/]" title="">[field:title/]</a></li>
+                {/dede:list}
+           </ul> 
+        </div>
+        <div class="webPageContent">
+         <div class="webOpenapiCon">
+            <div  class="clear"></div>
+
+        <div class="local" >您的位置：{dede:field name='position'/} >  </div>
+        <div class="news_con_int">
+          <div class="news_title">{dede:field.title/}</div>
+          <div class="news_title_add">发表日期：{dede:field.pubdate function="MyDate('Y-m-d',@me)"/}     文章编辑：{dede:field.writer/}    浏览次数: <script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script></div>
+          <div class="news_word">{dede:field.body/}</div>
+        </div> 
+
+         </div>
+        </div>
+       </div>
+    </div>
+</div>
+<div  class="clear"></div>
+<!--主体内容结束-->
+
+
+{dede:include filename="footer.htm"/}
+</div>
+</body></html>

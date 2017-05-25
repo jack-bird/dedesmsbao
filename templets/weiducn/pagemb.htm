@@ -1,0 +1,131 @@
+{dede:include filename="header.htm"/}
+
+<div  class="navbar">
+
+    <div  class="container">
+
+        <div  class="logo">
+
+            <a  href="index.htm"><img  src="/style_sb/images/logo.png"></a>
+
+        </div>
+
+        <ul  class="navbar-nav">
+
+            <li  class="nav-menu">
+
+                <a  href="/"  class="menu cur">首页</a>
+
+            </li>
+
+            <li  class="nav-menu">
+
+                <a  href="/buzz/index.html"  class="menu">谁在用？</a>
+
+            </li>
+
+            <li  class="nav-menu">
+
+                <a  href="/openapi/index.html"  class="menu">接口API</a>
+
+            </li>
+
+            <li class="nav-menu">
+
+                <a  href="/plugin/index.html"  class="menu">开源插件</a>
+
+            </li>
+
+            <li class="nav-menu">
+
+                <a  href="/joinin/index.html"  class="menu">合作加盟</a>
+
+            </li>
+
+            <li  class="nav-menu">
+
+                <a  href="/tariff/index.html"  class="menu">资费标准</a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<script>
+
+    var pageIdentify = 'HomePage';
+
+    if (pageIdentify) {
+
+        $('.navbar-nav').find('.' + pageIdentify).addClass('active');
+
+
+
+    }
+
+    $('.nav-menu').hover(function() {
+
+        $(this).find('ul').show();
+
+        $(this).find('span').show();
+
+    }, function() {
+
+        $(this).find('ul').hide();
+
+        $(this).find('span').hide();
+
+    });
+
+</script>
+
+<!--主体内容开始-->
+
+<div  class="main-box">
+
+    <div  class="index-banner height200">
+
+        <div  class="banner height200"  alt="0"  style="background-image: url(/style_sb/images/pageBanner.png); background-position: 50% 50%; background-repeat: initial initial;">
+
+        </div>
+
+    </div>
+
+    <div  class="share-box pt40">
+
+        <div  class="container">
+
+            <div  class="content">
+
+                <div class="webBuzzCon">
+
+                    <ul>
+
+                    {dede:list row='10' pagesize='10' titlelen='240'}
+
+                        <li><a href="[field:arcurl/]" title="">[field:title/]</a></li>
+
+                    {/dede:list}
+
+                    </ul> 
+
+                </div>
+
+                <div  class="clear"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div  class="clear"></div>
+
+<!--主体内容结束-->
+
+{dede:include filename="footer.htm"/}

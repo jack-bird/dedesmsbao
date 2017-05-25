@@ -1,0 +1,147 @@
+a{ text-decoration: none;}
+a:hover{text-decoration: underline;}
+.reg{background: url("../images/login-bg.gif") repeat;}
+
+/*.page-bottom{border: none; line-height: 82px; background: transparent; color: #b2b2b2; font-size: 12px;}*/
+.reg-form{border:1px solid #d7d7d7; margin-top: 20px; background: #fff; margin-bottom:20px;}
+.reg-form-box{padding: 29px 40px 20px 40px;}
+
+.form-info{float: left; width: 668px;}
+.form-group{clear: both; margin-bottom: 15px;}
+.form-group .control-label{float: left; width: 101px; text-align: right;padding: 9px 13px 0 0; font-family: "宋体"; color: #323232;}
+.form-group a{color: #999;}
+.form-group .control-label span{color: #ff0000; padding-left: 4px;}
+.form-group .control-input{float: left; width: 302px; }
+.promotion{position: relative;}
+.select-icon{position: absolute; background: url("../images/select.png"); width: 7px; height: 4px; right: 12px; top: 17px;}
+.promotions-select{position: absolute;     background-clip: padding-box;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+    float: left;
+    font-size: 14px;
+    left: 0;
+    list-style: none outside none;
+    margin: 2px 0 0;
+    width: 302px;
+    padding: 5px 0;
+    position: absolute;
+    display: none;
+    top: 100%;
+    z-index: 1000;}
+.promotions-select li{
+    clear: both;
+    color: #333333;
+    display: block;
+    font-weight: normal;
+    line-height: 1.42857;
+    padding: 3px 11px;
+    white-space: nowrap;
+}
+.promotions-select li:hover, .promotions-select li.active{ background: #4191c3; color: #fff; }
+.qcode-box{text-align: center; float: right; width: 250px; background: url("../images/qcode-box.png") left top repeat-y; padding-bottom: 94px;}
+.qcode-box p{text-align: left; padding-left: 32px; line-height: 20px; margin-bottom: 8px; color: #737373;}
+.qcode-box h3{color: #333333; font-size: 18px; line-height: 18px; }
+.qcode-box img{margin: 8px 0 8px 0;}
+.form-control {
+    background-color: #fcfcfc;
+    background-image: none;
+    border: 1px solid #b9b9b9;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #999999;
+    font-size: 14px;
+    height: 35px;
+    line-height: 1.42857;
+    padding: 0 11px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.form-control.loading {
+    background: url("../images/loading.gif") no-repeat scroll right center rgba(0, 0, 0, 0);
+}
+
+.form-control:focus {
+    border-color: #5fa1f5;
+    background: #ffffff;
+    box-shadow: 0px 0px 1px #5fa1f5;
+    outline: 0 none;
+}
+.form-action{padding-left: 101px; padding-top: 4px;}
+
+#pass-strength-container{margin:5px 0 0 99px;}
+.password-strength-ul li {
+    background-color: #F2CA8A;
+    border: 1px solid #F2CA8A;
+    border-radius: 2px;
+    float: left;
+    font-size: 10px;
+    height: 15px;
+    line-height: 13px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    text-align: center;
+    width: 99px;
+    color: #fff;
+}
+.password-strength-ul li.active {
+    background-color: #F39800;
+    border-color: #F39800;
+}
+
+.imsg{ padding-left: 25px;  float: left; display: none; float: left; line-height: 35px; color: #949494; font-size: 12px; margin-left: 20px; width: 240px;}
+.msg-info{
+    background: url("../images/tips.png") no-repeat scroll left -72px rgba(0, 0, 0, 0);
+}
+.msg-success{
+    background: url("../images/tips.png") no-repeat scroll 2px 8px rgba(0, 0, 0, 0);
+}
+.msg-error{
+    background: url("../images/tips.png") no-repeat scroll left -154px rgba(0, 0, 0, 0);
+}
+
+
+.reg-main-activate-body, .reg-main-success-body, .reg-main-fail-body, .retrieve-password-body {
+    padding-bottom: 50px;
+    padding-top: 100px;
+}
+.reg-main-body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 0 15px;
+}
+
+.active-p{margin: 5px 0 10px;}
+.reg-main-body p{ padding-bottom: 5px;}
+.reg-main-body h3{font-size: 24px; margin: 20px 0 10px;}
+p.activ-tips{
+    color: #737373;
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 38px;
+}
+.reg-main-body a{color: #359ADE; font-size: 18px;}
+.f-btn-mail{ width: 255px; height: 48px; border: 1px solid #5aa638; display: block; margin: 0 auto; color: #fff;}
+a.f-btn-mail{color: #fff; line-height: 32px;}
+a.f-btn-mail:hover{text-decoration: none;}
+.f-btn-success{width: 215px; height: 48px; border: 1px solid #5aa638; display: inline;}
+.dashed-line{
+    height: 0;
+    margin: 75px auto 10px;
+    border: 1px dashed #E6E9EB;
+}
+.activate-email-info{}
+.activate-email-info p{margin: 25px 0 10px 0; }
+.activate-email-info li{
+    color: #737373;
+    float: left;
+    font-size: 12px;
+    line-height: 20px;
+    width: 49%;
+}
+.activate-email-info a{font-size: 12px;}

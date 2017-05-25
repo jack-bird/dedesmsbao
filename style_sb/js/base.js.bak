@@ -1,0 +1,80 @@
+/**
+ * Created by king on 16/4/26.
+ */
+function windowScreen() {
+    if ($(window).width() < 1000) {
+        $("body").css("min-width", 1200);
+    }
+}
+
+$(function() {
+    // 主导航的子栏目菜单下滑，以纵向列表显示
+    if ($(".show_column").length > 0) {
+        $(".show_column").subColumnShow({
+            "pullDownBgColor":"#fff",
+            "pullDownBorder":"1px solid #eee",
+            "showSpeed":200
+        });
+    }
+
+    // 全屏带背景轮播，自动适应屏幕
+    if ($("#banner").length > 0) {
+        $("#center_main3").aroundAutoSwitchAllScreen({
+            "iconClass": "allScreen-icon", //图标的节点
+            "speed": 5000, //动画播放速度
+            "mainClass": "autoSwitchAllScreen-main" //动画节点，一般是ul
+
+        });
+    }
+
+    windowScreen();
+
+    if ($(".banner-text").length  > 0) {
+        var left = $(".nav_main").offset().left;
+        $(".banner-text").css("left", left);
+    }
+
+    if ($("#current_member").length > 0) {
+        var node = $(".nav_main");
+        var w = node.width();
+        var w2 = $("#login_box").width();
+        var loginLeft = node.offset().left + w - w2;
+        $(".login-box").css("left", loginLeft);
+    }
+
+
+    var system ={
+        win : false,
+        mac : false,
+        xll : false
+    };
+
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+
+    //跳转语句 转向后台登陆页面
+    if(system.win || system.mac || system.xll){
+        $(window).on("resize", function() {
+            windowScreen();
+        });
+
+    } else {
+        //非PC端执行
+        $(".login-box").css("left", "65%");
+        $("body").css("min-width", 0);
+        //window.location.href = 'http://m.huayingsh.com';
+        $(".webContainer").css("width", 960);
+        $(".nav_main").css("width", 960);
+        $(".web_news_box").css("width", 615);
+        $("#plug").css("width", 960);
+        $("#plug").find("li").css("width", 180);
+        $(".share-r").css("width", 292);
+        $(".page-bottom").css("width", "100%");
+        $(".page-bottom ul").css("width", 960);
+        $(".page-bottom p").css("width", 960);
+    }
+
+});

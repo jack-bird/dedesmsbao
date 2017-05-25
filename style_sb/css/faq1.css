@@ -1,0 +1,70 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0px;
+}
+.contentbox{
+	background-color: #f3f3f3;
+}
+.conboxcon{
+	border:1px solid #e5e5e5;
+	border-top:none;
+	width:900px;
+}
+.conboxcon_1{
+	border:1px solid #f6f6f6;
+	border-top:none;
+	position:relative;
+	z-index:10;
+	background:#fff;
+	padding:80px 55px 50px 55px;
+}
+.contopdetail{
+}
+
+.aboutitle{
+	background:url(../images/contopbg.png) no-repeat left bottom;
+	padding:0 0 15px 0;
+	margin:0 0 30px 0;
+	font-size:24px;
+	font-weight:normal;
+}
+.aboutmorecon{ display:none;}
+.faqbox{}
+.faqlist{border-bottom:1px solid #eee; margin:0 0 0 0;}
+.faqlist dt{
+	cursor:pointer;
+	border-top:1px solid #eee;
+}
+.faqlist dt a{
+	color:#474747;
+	height:25px;
+	line-height:25px;
+	display:block;
+	padding:15px 0;
+	font-size:16px;
+}
+.faqlist dt a span{background:url(../images/ico_2.png) no-repeat right -200px; display:block;}
+.faqlist dt a:hover{ text-decoration:none;}
+.faqlist dt a:hover span{background:url(../images/ico_2.png) no-repeat right -225px;}
+.faqlist dt.cur a span{background:url(../images/ico_2.png) no-repeat right -250px;}
+.faqlist dt.cur a:hover span{/*background:url(../images/ico_2.png) no-repeat right -275px;*/}
+.faqlist dd{
+	display:none;
+}
+.faqlist .faqtextcon{ position:relative; padding:7px 0 0 0;}
+.faqlist .faqtextcon .angel{
+	background:url(../images/angel_3.png) no-repeat left 0px;
+	position:absolute;
+	left:40px;
+	top:0;
+	width:15px;
+	height:9px;
+}
+.faqlist .faqtextcon .faqtext{
+	background:#fef8f4;
+	border:2px solid #fbefe6;
+	border-bottom:1px solid #fbefe6;
+	padding:20px 30px;
+	color:#b18160;
+}

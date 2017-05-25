@@ -1,0 +1,155 @@
+/**
+ * Created by king on 16/4/26.
+ */
+(function($) {
+    $.fn.aroundAutoSwitchAllScreen = function(o) {
+        var opts = $.extend({}, $.fn.aroundAutoSwitchAllScreen.defaults, o);
+        var ele = this;
+        var lists = $("." + opts.mainClass);
+        var liNode = lists.children();
+        //var liNode = lists.find("li");
+        //alert(liNode.length);
+        var nowPage = 1;
+        var allList = liNode.length; //要显示的图片总数
+        var pageLists = allList;
+        var iconLists = $("." + opts.iconClass);
+        var adTimer = null;
+        var scrInfo = null;
+        var allWidth = 0;
+        var init = false;
+        var aLists = null;
+        var colorLists = [];
+        var index = 0;
+        var appLi = null;
+        var liLists = "";
+
+        aLists = liNode.children("a");
+
+        aLists.each(function() {
+            colorLists = $(this).attr("name");
+
+            if (colorLists) {
+                liNode.eq(index).css("background", colorLists);
+                //liNode.eq(index)
+            }
+            //liNode.eq(index).css("background", colorLists);
+            index++;
+        });
+
+        $.C_getScreenInfo = function() {
+            return {"w":$(window).width(), "h":$(window).height()};
+        };
+
+        scrInfo = $.C_getScreenInfo();
+        allWidth = scrInfo.w;
+        //li和外层的div的宽度设置缺一不可
+        liNode.width(allWidth);
+        ele.width(allWidth);
+        iconLists.width(allWidth).css("position","absolute");
+        for (var i=0; i<allList; i++) {
+            liLists += "<li></li>";
+        }
+        appLi = $(liLists);
+        iconLists.find("ul").append(appLi)
+            .css({"width":appLi.width() * allList, "margin":"0 auto"})
+            .end().css("top", ele.height() - iconLists.height());
+
+        setCurMenu(0);
+        function setCurMenu(nowCur) {
+            appLi.eq(nowCur).css({"background-position":"0px -12px", "margin-top":17})
+                .siblings().css({"background-position":"0px 12px", "margin-top":5});
+        }
+
+        var system ={
+            win : false,
+            mac : false,
+            xll : false
+        };
+
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+
+        //跳转语句 转向后台登陆页面
+        if(system.win || system.mac || system.xll){
+
+        } else {
+$("body").css("min-width", 0);
+            $(window).on("resize", function() {
+                allWidth = $(window).width();
+
+                if (adTimer) {
+                    clearInterval(adTimer);
+                }
+
+                ele.width(allWidth);
+                lists.find("li").width(allWidth);
+                iconLists.width(allWidth).css("top", ele.height() - iconLists.height());
+
+                if (false !== init) {
+                    lists.css({left : allWidth * (nowPage-1) * -1});
+                }
+
+                adTimer = setInterval(function() {
+                    init = true;
+                    lundong();
+                }, opts.speed);
+            });
+        }
+
+
+
+
+
+        appLi.on("click", function() {
+            var index = $(this).index();
+
+            if (adTimer) {
+                clearTimeout(adTimer);
+            }
+
+            lists.animate({"left" : allWidth * index * -1}, 500);
+            nowPage = index + 1;
+            setCurMenu(index);
+            adTimer = setTimeout(lundong, opts.speed);
+        });
+
+        function lundong() {
+
+            if (adTimer) {
+                clearInterval(adTimer);
+            }
+
+            if (!lists.is(":animated")) {
+                //已经到最后一个版面了,如果再向后，必须跳转到第一个版面。
+                if (nowPage >= pageLists) {
+                    lists.animate({ left: '0px'}, "slow"); //通过改变left值，跳转到第一个版面
+                    setCurMenu(0);
+                    nowPage = 1;
+                } else {
+                    lists.animate({left: '-=' + allWidth}, "slow");  //通过改变left值，达到每次换一个版面
+                    setCurMenu(nowPage);
+                    nowPage++;
+                }
+            }
+
+            adTimer = setInterval(lundong, opts.speed);
+
+        }
+
+        //滚动轮播
+        adTimer = setInterval(lundong, opts.speed);
+
+        return $(this);
+
+    };
+    //默认样式
+    $.fn.aroundAutoSwitchAllScreen.defaults = {
+        "iconClass":"allScreen-icon",
+        "speed":3800,
+        "mainClass":"autoSwitchAllScreen-main"
+    };
+
+})(jQuery);

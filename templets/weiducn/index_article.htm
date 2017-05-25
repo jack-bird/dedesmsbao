@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<link rel="stylesheet" type="text/css" href="{dede:global.cfg_cmsurl/}/style/css/basic.css"/>
+<link rel="stylesheet" type="text/css" href="{dede:global.cfg_cmsurl/}/style/css/inner.css"/>
+    <script>
+        $(function() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+                "dataType" : "text",
+        	"data" : {"win":window.location.href},
+                "success" : function(){}
+            });
+        });
+    </script>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<script type="text/javascript">document.getElementById("menu6").className="a1";</script>
+<div class="container">
+  <div class="solution_banner"></div>
+  <div class="solutions_content" >
+    
+    <h1 class="solutions_title">{dede:field name='typename'/}</h1>
+    
+    <div class="solutions_detail">
+{dede:field.content/}
+  </div>
+</div>
+    <div class="solution_detail_class">
+     
+        <ul>{dede:channel type='son' typeid ='5'}
+           <li><a href="[field:typelink/]">[field:typename/]</a></li>
+{/dede:channel}
+		   <div class="clear"></div>
+        </ul>
+      <div class="local">您的位置：{dede:field name='position'/} >  </div>
+    </div>
+    
+  </div>
+</div>
+<div class="clear"></div>
+{dede:include filename="footer.htm"/}
+</body>
+</html>

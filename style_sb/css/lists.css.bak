@@ -1,0 +1,30 @@
+*{font-family:"Hiragino Sans GB","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif!important;}
+.details_banner{ width:100%; height:150px; background:url(../images/new_banner_bg.png) 50% 0 no-repeat;}
+.sitecon{background: url(../images/site.png) repeat-x left 0;}
+.sitecon .about_site{width:1000px;margin:0 auto;height:50px;line-height:50px;font-size:14px;color:#444;position: relative;}
+.about_site a{display:inline-block;color:#444;}
+.object{ width:1000px; margin-left:auto; margin-right:auto;overflow:hidden;}
+.left_box{ width:700px; float:left;padding-top:40px;}
+.right_box{ width:250px; float:right;padding:40px 0px;}
+.left_box1{ width:700px; height:200px; border-bottom:1px dashed gray; margin-bottom:20px; overflow:hidden; padding-bottom:10px; }
+.left_box2{ background-image: url(../images/meigui.png); height:100px; width:100px;float:left; margin-top:5px; margin-left:20px;}
+.left_box3{ width:480px; float:right; margin-right:70px;}
+.left_box1 h1{padding-bottom:14px}
+.left_box1 h1 a{color:black;font-size:18px;font-weight:700;}
+.left_box1 h1 a:hover{ color:#00aaee}
+.left_box1 h2{ color:gray; font-weight:700; font-size:14px;padding-bottom:14px}
+.left_box1 h2 a{ color:black; font-size:15px; font-weight:600; padding-left:5px;}
+.left_box1 h2 a:hover{ color:#00aaee}
+.left_box3 dd p{ font-size:15px; font-weight:700; color:gray; padding-bottom:12px;}
+.left_box3 dd a{ font-size:15px; font-weight:500; color:black;}
+.left_box3 dd a:hover{ color:#00aaee;}
+.Page{margin:30px 0 50px 0;text-align:center;padding:5px 0}
+.Page a{line-height:27px;color:#727272;text-align:center;background:#fff;border: 1px solid #eee;width:28px;height:28px;margin-right:5px;display:block;float:left;border-radius: 3px; font-weight:700;}
+.Page a:hover{background:#00aaee;border: 1px solid #00A3E4;color: white;}
+.clearfix{ clear:both;}
+input{padding:10px 30px; border-radius:12px; border:1px solid gray; color:#CCC;}
+.keyword{ margin-top:40px;}
+.keyword1{ margin-top:30px;}
+.keyword h1{ color:#666; font-size:16px;}
+.keyword1 a{padding:5px 10px;color:#aaa;background:#e5e5e5;display:inline-block;margin:0 10px 10px 0;border-radius:3px;*display:inline; margin-left:10px;}
+.keyword1 a:hover{background:#009fd6;color:#fff}

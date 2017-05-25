@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>帝国CMS短信宝短信插件_马上使用更好的短信服务-短信宝官网</title>
+<meta name="keywords" content="短信宝,短信宝短信插件,帝国CMS,帝国CMS短信插件" />
+<meta name="description" content="帝国CMS短信宝短信插件 版本：帝国CMS V4正式版 帝国CMS短信宝插件 配置方式： 一：本插件系短信宝针对帝国CMS7.2版本开发，插件内的所有文件均为对原文件的修改，如果你的系统经过二次开发，安装本插件之前，请仔细核对修改。 二：插件的安装：将本插件内的文件覆盖至原系统。 三：短息的配置：进入系统后台，插件 - 手机短信管理 - 短信账户设置。 四. 选择：商城系统管理" />
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/style_sb/css/ie.css">
+<![endif]-->
+
+<!--[if lt IE 9]>
+      <script src="/style_sb/js/html5shiv.min.js"></script>
+      <script src="/style_sb/js/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if lt IE 7]>
+<script src="/style_sb/js/DD_belatedPNG.js"></script>
+<script type="text/javascript"> 
+	DD_belatedPNG.fix();
+</script> 
+<![endif]-->
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/right_menu.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+<!--<script type="text/javascript" src="/style_sb/js/right_menu.js"></script>-->
+    <script type="text/javascript" src="/style_sb/js/sub_column.js"></script>
+    <script type="text/javascript" src="/style_sb/js/base.js"></script>
+    <script>
+        glb = true;
+
+        function getApple() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+                	"dataType" : "text",
+        "data" : {"win":window.location.href},
+                "success" : function(){}
+            });
+        }
+
+        $(function() {
+
+            if (true == glb) {
+                getApple();
+            }
+
+            glb = false;
+
+            if ($(".jspPane").length > 0) {
+                setInterval(function() {
+                    $(".jspPane").css("margin-left", 0);
+                }, 1000);
+            }
+        });
+
+    </script>
+</head>
+<body  class="index">
+<div  class="wrapper">
+<div  class="top-bar ">
+    <div  class="webContainer">
+        <div  class="top-box">
+            <ul  class="contact-bar">
+                <li  class="tel last">400-009-0465</li>
+            </ul>
+            <ul id="current_member" class="user-bar" style="float:right">
+                <li  class="active first"><a  href="/login">登录</a></li>
+                <li  class="last"><a  href="/reg">注册</a></li>
+            </ul>
+            <!--
+            <div class="search">
+                <form  name="formsearch" action="/plus/search.php">
+                    <div class="form">
+                        <input type="hidden" name="kwtype" value="0" />
+                        <input id="search-option" type="hidden" name="searchtype" value="title" />
+                        <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+                        <button type="submit" class="search-submit"></button>
+                    </div>
+                </form>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<script>
+    $(function() {
+        if ($(".user-bar").length > 0) {
+            $(".user-bar li").hover(function() {
+                $(this).find('ul').show();
+            }, function() {
+                $(this).find('ul').hide();
+            });
+            $(".language-bar li").hover(function() {
+                $(this).find('div').show();
+            }, function() {
+                $(this).find('div').hide();
+            });
+        }
+
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+
+					$.ajax({
+						url: "http://beta.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+							}
+                                                }
+					});
+				
+});
+</script>
+<div id="nav">
+    <div class="nav_main">
+        <div class="nav_main_div"><a href="/"><img src="../images/logo.png" alt="短信宝短信平台"/></a></div>
+        <ul class="nav_main_ul_one">
+
+            <li class="nav_item"><a href="/">首 页</a></li>
+            <li class="nav_item show_column">
+                <a href="javascript:void(0);">黑板报</a>
+                <ul class="columnShow-inline">
+                    <li>
+                        <h3><a href="/buzz" target="_blank">谁 在 用</a></h3>
+                    </li>
+
+                    <li>
+                   <h3><a href="/application" target="_blank">干货分享</a></h3>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav_item"><a href="/help">使用指南</a></li>
+            <li class="nav_item"><a href="/openapi">短信接口</a></li>
+            <li class="nav_item"><a href="/plugin">建站插件</a></li>
+            <li class="nav_item"><a href="/joinin">合作联盟</a></li>
+            <li class="nav_item"><a href="/fee">资费标准</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var pageIdentify = 'menu35';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>
+
+<!--主体内容开始-->
+<div  class="sidebarbox"  style="position: absolute; top: 150px;">
+    	<aside  class="sidebar"  data-defaulth="610">
+            <h3  class="title"><span>开源插件</span><span  class="slideico"></span></h3>
+			<div  class="sidelistcon">
+<div  class="sidelistbox"  style="overflow:hidden; padding: 0px; width: 230px;"><div  class="jspContainer"  style="width: 230px;"><div  class="jspPane"  style="padding: 0px; top: 0px; width: 230px;">
+<ul  class="sidelist">
+                   <li id="opensite" class=""><a href="http://mp.weixin.qq.com/s?__biz=MzAwNDk0MTk4MQ==&mid=100000001&idx=1&sn=7ada831f9dcdf6460f96e006805e9766#rd" title="" target="_blank">YunGouCMS V3<span></span></a></li>
+                <li id="menuarc90" class=""><a href="/plugin/90.html" title=""><span>BaoCMS短信宝短信插件</span></a></li><li id="menuarc95" class=""><a href="/plugin/95.html" title=""><span>Discuz短信宝短信插件</span></a></li><li id="menuarc74" class=""><a href="/plugin/74.html" title=""><span>TourEx旅游短信宝短信插件</span></a></li><li id="menuarc75" class=""><a href="/plugin/75.html" title=""><span>EcShop短信宝短信插件</span></a></li><li id="menuarc80" class=""><a href="/plugin/80.html" title=""><span>方维p2p短信宝短信插件</span></a></li><li id="menuarc81" class=""><a href="/plugin/81.html" title=""><span>快捷订餐系统短信宝短信插件</span></a></li><li id="menuarc82" class=""><a href="/plugin/82.html" title=""><span>友价源码短信宝短信插件</span></a></li><li id="menuarc46" class=""><a href="/plugin/46.html" title=""><span>方维o2o短信宝短信插件</span></a></li><li id="menuarc83" class=""><a href="/plugin/83.html" title=""><span>方维众筹短信宝短信插件</span></a></li><li id="menuarc48" class=""><a href="/plugin/48.html" title=""><span>方维短信宝短信插件</span></a></li><li id="menuarc84" class=""><a href="/plugin/84.html" title=""><span>ECShop小京东短信宝短信插件</span></a></li><li id="menuarc86" class=""><a href="/plugin/86.html" title=""><span>ThinkSNS短信宝短信插件</span></a></li><li id="menuarc50" class=""><a href="/plugin/50.html" title=""><span>艾尚团购短信宝短信插件</span></a></li><li id="menuarc87" class=""><a href="/plugin/87.html" title=""><span>小猪o2o短信宝短信插件</span></a></li><li id="menuarc89" class=""><a href="/plugin/89.html" title=""><span>微赞系统短信宝短信插件</span></a></li><li id="menuarc92" class=""><a href="/plugin/92.html" title=""><span>微擎-超级商城短信宝插件</span></a></li><li id="menuarc93" class=""><a href="/plugin/93.html" title=""><span>微米CMS短信宝短信插件</span></a></li><li id="menuarc94" class=""><a href="/plugin/94.html" title=""><span>ShopNC短信宝短信插件</span></a></li><li id="menuarc105" class=""><a href="/plugin/105.html" title=""><span>KPPW威客系统短信宝短信插件</span></a></li><li id="menuarc106" class=""><a href="/plugin/106.html" title=""><span>外卖人短信宝短信插件</span></a></li><li id="menuarc107" class=""><a href="/plugin/107.html" title=""><span>小猪多用户营销短信宝插件</span></a></li><li id="menuarc108" class=""><a href="/plugin/108.html" title=""><span>Wordpress短信宝短信插件</span></a></li><li id="menuarc109" class=""><a href="/plugin/109.html" title=""><span>微擎-婚恋交友模块短信宝插件</span></a></li><li id="menuarc110" class=""><a href="/plugin/110.html" title=""><span>EcTouch短信宝短信插件</span></a></li><li id="menuarc111" class=""><a href="/plugin/111.html" title=""><span>骑士人才系统短信宝短信插件</span></a></li><li id="menuarc112" class=""><a href="/plugin/112.html" title=""><span>微盒微信系统短信宝短信插件</span></a></li><li id="menuarc113" class=""><a href="/plugin/113.html" title=""><span>方维一元购短信宝短信插件</span></a></li><li id="menuarc114" class=""><a href="/plugin/114.html" title=""><span>西部数码分销短信宝短信插件</span></a></li><li id="menuarc115" class=""><a href="/plugin/115.html" title=""><span>小猪微店短信宝短信插件</span></a></li><li id="menuarc116" class=""><a href="/plugin/116.html" title=""><span>TPShop商城短信宝短信插件</span></a></li><li id="menuarc117" class=""><a href="/plugin/117.html" title=""><span>芝麻乐众筹短信宝短信插件</span></a></li><li id="menuarc118" class=""><a href="/plugin/118.html" title=""><span>小猪微电商短信宝短信插件</span></a></li><li id="menuarc119" class=""><a href="/plugin/119.html" title=""><span>虚拟货币平台短信宝短信插件</span></a></li><li id="menuarc120" class=""><a href="/plugin/120.html" title=""><span>astgo短信宝短信接口</span></a></li><li id="menuarc122" class=""><a href="/plugin/122.html" title=""><span>DEDECMS短信宝短信插件</span></a></li><li id="menuarc123" class=""><a href="/plugin/123.html" title=""><span>思途旅游CMS短信宝短信插件</span></a></li><li id="menuarc124" class=""><a href="/plugin/124.html" title=""><span>PHPCMS短信宝插件</span></a></li><li id="menuarc125" class=""><a href="/plugin/125.html" title=""><span>齐博地方门户短信宝短信插件</span></a></li><li id="menuarc126" class=""><a href="/plugin/126.html" title=""><span>PHPYUN人才系统短信宝插件</span></a></li><li id="menuarc127" class=""><a href="/plugin/127.html" title=""><span>星外主机管理系统短信宝插件</span></a></li><li id="menuarc128" class=""><a href="/plugin/128.html" title=""><span>iWebShop短信宝短信插件</span></a></li><li id="menuarc129" class=""><a href="/plugin/129.html" title=""><span>微擎-芸众商城短信宝短信插件</span></a></li><li id="menuarc136" class=""><a href="/plugin/136.html" title=""><span>ZHICMS系统短信宝配置</span></a></li><li id="menuarc139" class=""><a href="/plugin/139.html" title=""><span>小鸟云短信宝插件配置方法</span></a></li><li id="menuarc140" class=""><a href="/plugin/140.html" title=""><span>CmsEasy短信宝短信插件</span></a></li><li id="menuarc141" class=""><a href="/plugin/141.html" title=""><span>程式CMS短信宝短信插件</span></a></li><li id="menuarc142" class=""><a href="/plugin/142.html" title=""><span>大商创短信宝短信插件</span></a></li><li id="menuarc49" class=""><a href="/plugin/49.html" title=""><span>天天团购短信宝短信插件</span></a></li><li id="menuarc143" class=""><a href="/plugin/143.html" title=""><span>阿狸子V2.4.6短信宝插件</span></a></li><li id="menuarc144" class=""><a href="/plugin/144.html" title=""><span>帝国CMS短信宝短信插件</span></a></li><li id="menuarc145" class=""><a href="/plugin/145.html" title=""><span>SOMCNS短信宝短信插件</span></a></li><li id="menuarc146" class=""><a href="/plugin/146.html" title=""><span>昊海拼团短信宝短信插件</span></a></li><li id="menuarc147" class=""><a href="/plugin/147.html" title=""><span>NZ源码交易短信宝插件</span></a></li><li id="menuarc148" class=""><a href="/plugin/148.html" title=""><span>PHP家装短信宝插件</span></a></li><li id="menuarc149" class=""><a href="/plugin/149.html" title=""><span>Yun_EC电商系统短信宝插件</span></a></li><li id="menuarc150" class=""><a href="/plugin/150.html" title=""><span>得推校园O2O短信宝插件</span></a></li><li id="menuarc151" class=""><a href="/plugin/151.html" title=""><span>云购短信宝插件</span></a></li><li id="menuarc152" class=""><a href="/plugin/152.html" title=""><span>江湖家居短信宝插件</span></a></li><li id="menuarc51" class=""><a href="/plugin/51.html" title=""><span>最土团购短信宝短信插件</span></a></li>
+
+</ul>
+</div></div></div>
+                 <div  class="suof"><a href="#"></a></div>
+			</div>
+        </aside>
+</div>
+<div  class="main-box">
+    <div  class="index-banner height150">
+        <div  class="banner height150"  alt="0"  style="background-image: url(/style_sb/images/new_banner_bg.png); background-position: 50% 50%; background-repeat: initial initial;"></div>
+    </div>
+    <div  class="sitecon">
+        <div  class="container">
+            <div  class="about_site">
+                您的位置：<a href=''>短信宝</a> > <a href='/plugin/'>开源插件</a> > </div>
+        </div>
+    </div>
+    <div  class="share-box">
+        <div class="container contSub">
+        <div class="webPageContent">
+         <div class="webOpenapiCon">
+          <div  class="clear"></div>
+                        <div class="webOpenapiContent">
+                            <h1 class="webOpenapiTit">
+	帝国CMS短信宝短信插件</h1>
+版本：帝国CMS7.2正式版<br />
+<br />
+<ul class="web_dxb_down_mod">
+	<li class="noBorder">
+		<a href="http://www.smsbao.com/download/diguocms_smsbao.zip">帝国CMS短信宝插件</a></li>
+</ul>
+<br />
+配置方式：<br />
+<br />
+一：本插件系短信宝针对帝国CMS7.2版本开发，插件内的所有文件除e/admin/smsbao目录外，均为对原文件的修改，如果你的系统经过二次开发，安装本插件之前，请仔细核对修改。<br />
+<br />
+二：插件的安装：将本插件内的文件覆盖至原系统，浏览器输入：域名/install_smsbao.php安装短信宝短信插件，出现安装成功提示后请将根目录下的install_smsbao.php删除。<br />
+<br />
+<img alt="" src="/uploads/allimg/170315/2-1F31513244K59.png" style="width: 626px; height: 387px;" /><br />
+<br />
+三：短息的配置：进入系统后台，插件 &nbsp;-&gt; &nbsp;手机短信管理 - &gt;短信账户设置。<br />
+<br />
+<img alt="" src="/uploads/allimg/170314/2-1F3141FT6391.png" style="width: 626px; height: 387px;" /><br />
+<br />
+四　本插件包含的短信功能有：<br />
+　　　　　　　会员手机号注册与找回密码<br />
+<div>
+	　　　　　　　发送自定义短信给会员</div>
+<div>
+	　　　　　　　发送订单通知给收货人与平台运营者</div>
+<div>
+	　　　　　　　发送自定义短信给其他人</div>
+<div>
+	　　　　　　　有新的投稿时发送短信给平台运营者</div>
+<div>
+	　　　　　　　有新的信息反馈时发送短信给平台运营者</div>
+<div>
+	　　　　　　　有新的留言时发送短信给平台运营者</div>
+<div>
+	&nbsp;</div>
+<br />
+五. 选择：商城系统管理 -&gt; 商城参数设置 -&gt; 订单必填项。<br />
+<br />
+<img alt="" src="/uploads/allimg/170314/2-1F3141G352H4.png" style="width: 626px; height: 387px;" /><br />
+<br />
+六.注册：系统 -&gt; 系统设置 -&gt; 系统参数设置 -&gt; 用户设置<br />
+<br />
+<img alt="" src="/uploads/allimg/170314/2-1F3141IS93A.png" style="width: 626px; height: 387px;" /><br />
+<br />
+七: 修改: 后台 -&gt; 用户 -&gt; 会员管理 -&gt; 管理会员表单 -&gt; 个人注册表单 -&gt; 修改。<br />
+<br />
+<img alt="" src="/uploads/allimg/170314/2-1F3141I305411.png" style="width: 626px; height: 387px;" /><br />
+<br />
+八　最后进行发送测试：<br />
+<br />
+<img alt="" src="/uploads/allimg/170314/2-1F3141HU1553.png" style="width: 629px; height: 387px;" /><br />
+<br />
+注意事项：网站代码必须安装在服务器的根目录下！！　请登录短信宝后台，将平台运营者手机号添加至白名单！！
+                        </div>
+                <div  class="clear"></div>
+            </div>
+          </div>
+         </div>
+        </div>
+    </div>
+<div  class="clear"></div>
+<script>
+    var arcIdentify = 'menuarc144';
+    if (arcIdentify) {
+        $("#"+arcIdentify).addClass('active');
+    }
+</script>
+<!--主体内容结束-->
+<div  class="footer ">
+    <div  class="webContainer">
+        <div  class="footer-nav-box service">
+          
+        </div>
+        <div  class="footer-nav-box support">
+            <div  class="footer-title">
+                <h2><a href="/contactus" style="color:#fff">联系我们</a></h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <p>
+                    客服邮箱：<br>
+                    support@smsbao.com
+                    <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="短信宝客服" title="短信宝客服" /></a>
+
+                </p>
+                <!--<p class="webQQgroup"><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=15766f40539827f7fb3d10bb9b9699b6a7ff3cfa7162341d46cb8f79e4f7dae3"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="点击这里加入此群" title="点击这里加入此群"></a></p>-->
+            </div>
+        </div>
+        <div  class="footer-nav-box aboutus">
+            <div  class="footer-title">
+                <h2>使用指南</h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <ul>
+                    
+                    <li  class="first">
+                        <a  href="/help/index.html">使用指南</a><br />
+                    </li>
+                    <li  class="first">
+                        <a  href="/help/faq.html">常见问题</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="footer-nav-box aboutus">
+            <div  class="footer-title">
+                <h2><a href="/aboutus" style="color:#fff">关于我们</a></h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <ul>
+                    <li  class="first">
+                        <a  href="http://t.qq.com/smsbao" target="_blank">腾讯微博</a><br />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="footer-qcode">
+            <img  class="lazy"  src="/style_sb/images/qr-code.png"  height="141">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('body').on('click', '.qq', function(e){
+            $('.contact-qq').parent().find('iframe').contents().find('#launchBtn').click()
+        });
+    });
+</script>
+<div  class="clear"></div>
+<div  class="page-bottom">
+	<ul><li>友情链接：</li><li><a href='http://www.gap.cn/' target='_blank'>GAP</a> </li><li><a href='http://www.kaola100.com/' target='_blank'>考拉网</a> </li><li><a href='http://www.luzhou.com/' target='_blank'>大泸网</a> </li><li><a href='http://www.bbs-p2p.com' target='_blank'>P2P理财论坛</a> </li><li><a href='http://www.wforder.com/' target='_blank'>WFPHP在线订单管理系统</a> </li><li><a href='http://www.niucms.cn/' target='_blank'>Niucms智慧生活系统</a> </li><li><a href='http://www.yungoucms.com' target='_blank'>yungoucms</a> </li><li><a href='http://www.lanyecn.com/' target='_blank'>蓝叶云</a> </li><li><a href='http://www.zhicms.cc' target='_blank'>zhicms</a> </li><li><a href='http://www.liuliangx.com' target='_blank'>兜兜友</a> </li><li><a href='http://www.demohour.com/' target='_blank'>点名时间</a> </li><li><a href='http://hua.li' target='_blank'>花里花店</a> </li><li><a href='http://oldnavy.gap.cn/' target='_blank'>Old Navy</a> </li><li><a href='http://www.wqggg.com/' target='_blank'>万千购</a> </li></ul>
+    <p>Copyright © 2010-2014 smsbao.com All Rights Reserved <br />上海子橙电子科技有限公司 沪ICP备14008182号-1 上海市松江区广富林路658弄215号</p>
+</div>
+<link href="/kefu/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/kefu/js/kefu.js"></script>
+<!--在线客服Begin-->
+<div id="floatTools" class="rides-cs">
+	<div class="floatL">
+		<a style="display: block" id="aFloatTools_Show" class="btnOpen" title="查看在线客服" onclick="javascript:$('#divFloatToolsView').animate({width: 'show', opacity: 'show'}, 'normal',function(){ $('#divFloatToolsView').show();kf_setCookie('RightFloatShown', 0, '', '/', 'www.smsbao.com'); });$('#aFloatTools_Show').attr('style','display:none');$('#aFloatTools_Hide').attr('style','display:block');" href="javascript:void(0);">
+		展开</a>
+		<a style="display: none" id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" onclick="javascript:$('#divFloatToolsView').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){ $('#divFloatToolsView').hide();kf_setCookie('RightFloatShown', 1, '', '/', 'www.smsbao.com'); });$('#aFloatTools_Show').attr('style','display:block');$('#aFloatTools_Hide').attr('style','display:none');" href="javascript:void(0);">
+		收缩</a> </div>
+	<div id="divFloatToolsView" class="floatR" style="display: none">
+		<div class="cn">
+                                 <h3>工作时间</h3>
+			<ul>
+				<li><span>周一至周五</span></li>
+                                           <li><span>9:00 - 18:00</span></li>
+			</ul>
+
+                                <h3>热线电话</h3>
+			<ul>
+				<li><span>400-716-3021</span></li>
+			</ul>
+
+			<h3>产品支持</h3>
+			<ul>
+				<li><span>客服</span>
+				<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="短信宝客服" title="短信宝客服" /></a>
+				</li>
+			</ul>
+			<h3>渠道合作</h3>
+			<ul>
+				<li><span>客服</span>
+				<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="渠道合作" title="渠道合作" /></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--在线客服End-->
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254025928'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1254025928' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">
+var _maq = _maq || [];
+var key = "UV_APPLE";
+_maq.push(['apiKey', '100000'],['name', key]);
+(function() {
+    var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
+    ma.src = ('https:' == document.location.protocol ? 'https://stats' : 'http://stats') + '.smsbao.com/webstats.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
+</div>
+
+</div>
+<script>
+$(function(){
+    if ($("#nav").length > 0) {
+ var pathName = window.location.pathname;
+        var curIndex = 0;
+        var navNode = $("#nav");
+
+       // pathName = pathName.replace("/", "");
+
+        if (-1 != pathName.indexOf("index") || pathName == "") {
+            curIndex = 0;
+        } else if (-1 != pathName.indexOf("buzz") || -1 != pathName.indexOf("application") || -1 != pathName.indexOf("tags")) {
+            curIndex = 1;
+        } else if (-1 != pathName.indexOf("help")) {
+            curIndex = 2;
+        } else if (-1 != pathName.indexOf("openapi")) {
+            curIndex = 3;
+        } else if (-1 != pathName.indexOf("plugin")) {
+            curIndex = 4;
+        } else if (-1 != pathName.indexOf("joinin")) {
+            curIndex = 5;
+        } else if (-1 != pathName.indexOf("fee")) {
+            curIndex = 6;
+        } else {
+            curIndex = 0;
+        }
+//alert(curIndex);
+        $(".nav_item").find("a").removeClass("navCur");
+$(".nav_item").eq(curIndex).children("a").addClass("navCur");
+      
+}
+
+    var rightBox = $(".right_box");
+
+    if (rightBox.length > 0) {
+
+        var index = 0;
+        var that = null;
+
+        rightBox.find("li").each(function() {
+            that = $(this);
+            index = that.index();
+
+            if (0 == index % 2) {
+                
+                that.css("float", "right");
+            }
+        });
+    }
+
+    if ($(".show_column").length > 0) {
+        $(".show_column").subColumnShow({
+            "pullDownBgColor":"#fff",
+            "pullDownBorder":"1px solid #eee",
+            "showSpeed":200
+        });
+    }
+
+    if($(".news_con").length > 0){
+        $(".webContainer").css("width", 1200);
+        $(".nav_main").css("width", 1200);
+        $(".page-bottom").find("ul").css("width", 1200);
+        $(".page-bottom").find("p").css("width", 1200);
+        
+    }
+
+
+
+});
+</script>
+
+</body></html>

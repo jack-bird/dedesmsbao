@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <!--<meta http-equiv="Expires" content="0">-->
+    <!--<meta http-equiv="Pragma" content="no-cache">-->
+    <!--<meta http-equiv="Cache-control" content="no-cache">-->
+    <!--<meta http-equiv="Cache" content="no-cache">-->
+    <title>{dede:global.cfg_webname/}</title>
+    <meta name="description" content="{dede:global.cfg_description/}" />
+    <meta name="keywords" content="{dede:global.cfg_keywords/}" />
+    <link  rel="stylesheet"  href="/style_sb/css/common.css">
+    <link  rel="stylesheet"  href="/style_sb/css/index.css">
+    <script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style_sb/css/service.css">
+</head>
+<body>
+<div  class="wrapper">
+    {dede:include filename="header.htm"/}
+<div role="main">
+    <!--横幅广告开始-->
+    <div class="services-banner">
+        <div class="container">
+            <div class="column one-half">
+                <h1 class="directory-header">
+                    短信宝短信服务
+                </h1>
+                <h2 class="directory-tag">
+                    行业领先，全面安全稳定的短信服务
+                </h2>
+                <p class="lead">
+                    方便快捷的短信服务，帮助您的网站快速获得发送短信的能力
+                </p>
+            </div>
+            <div class="marketing-graphic column one-two">
+                <img style="width: 490px; height: 140px;" src="https://assets-cdn.github.com/images/modules/integrations/integrations-directory-graphic.svg?v=1">
+            </div>
+        </div>
+    </div>
+    <!--横幅广告结束-->
+    <!--服务导航开始-->
+    <div class="services-nav">
+        <div class="about_site">
+            你的位置：<a href="/">短信宝</a>><a href="">{dede:field name='typename'/}</a>
+        </div>
+    </div>
+    <!--服务导航结束-->
+    <!--主题内容开始-->
+    <div class="services-content">
+       <div class="sitecon">
+           <div class="service-left">
+           <!--<div class="services-show-t">-->
+               <!--<div class="services-show-t-s">-->
+                    <!--<div class="title">服务分类</div>-->
+                    <!--<ul class="cate">-->
+                        <!--<li><img src="image/1.png" style="height:150px;"></li>-->
+                        <!--<li><img src="image/2.png" style="height:150px;"></li>-->
+                        <!--<li><img src="image/3.png" style="height:150px;"></li>-->
+                        <!--<li><img src="image/4.png" style="height:150px;"></li>-->
+                    <!--</ul>-->
+               <!--</div>-->
+           <!--</div>-->
+
+           <div class="services-show-k">
+                <div class="services-show-s">
+                    <div class="services-title">
+                        <div id="date"></div>
+                        <h3>{dede:field name='typename'/}模板</h3>
+                        <a href="">more</a>
+                    </div>
+                    <ul>
+                        {dede:arclist row='12' titlelen='240' isweight = 'y' infolen='200'}
+                        <li><div class="service">
+                            <p class="service-main">
+                                [field:infos/]...
+                            </p>
+                            <a href="">一键发送</a>
+                        </div></li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+           </div>
+       </div>
+           <div class="service-right">
+                <div class="groom">
+                    <span>热门助手TOP5</span>
+                    <ul>
+                        <li><a href="/duanxinfuwu/taobaoke/index.html"><i><img src="/images/v2/tbk.png" style="height:24px;"></i><h2>淘宝客</h2></a></li>
+                        <li><a href="/duanxinfuwu/zhufuduanxinmoban/index.html"><i><img src="/images/v2/zufu.png" style="height:24px;"></i><h3>祝福短信</h3></a></li>
+                        <li><a href="/duanxinfuwu/gongzhonghao/index.html"><i><img src="/images/v2/gzh.png" style="height:24px;"></i><h3>公众号</h3></a></li>
+                        <li><a href="/duanxinfuwu/mianshitongzhi/index.html"><i><img src="/images/v2/mstz.png" style="height:24px;"></i><h3>面试通知</h3></a></li>
+                        <li><a href=""><i><img src="/images/v2/mi.png" style="height:24px;"></i><h3>迷之短信</h3></a></li>
+                    </ul>
+                </div>
+                <div class="hot">
+                    <span>热门短信TOP10</span>
+                    <ul>
+                        <li>热门短信1</li>
+                        <li>热门短信2</li>
+                        <li>热门短信3</li>
+                        <li>热门短信4</li>
+                        <li>热门短信5</li>
+                        <li>热门短信6</li>
+                        <li>热门短信7</li>
+                        <li>热门短信8</li>
+                        <li>热门短信9</li>
+                        <li>热门短信10</li>
+                    </ul>
+                </div>
+           </div>
+    </div>
+    </div>
+    <!--主体内容结束-->
+
+</div>
+<!--底部内容-->
+    {dede:include filename="footer.htm"/}
+</body>
+</html>

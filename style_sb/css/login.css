@@ -1,0 +1,67 @@
+a{ text-decoration: none;}
+a:hover{text-decoration: underline;}
+.logo{margin: 0 auto; margin-bottom: 37px; width: 225px;}
+.login .page-bottom{width: 530px; line-height: 26px; margin: 35px auto 0; border-top: 1px solid #e5e5e5; font-size: 12px; background: transparent;}
+.login{background: url("http://mob.com/Assets/images/login/login-bg.gif") repeat;}
+.login-box-bg{background: url("http://mob.com/Assets/images/login/wrapper-bg.png") center bottom no-repeat; width: 430px; margin: 0 auto; padding:20px 0;}
+.login-box{width: 382px; margin: 0 auto; background-color: #FFFFFF;border: 1px solid #D7D7D7;border-radius: 4px;box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.15);}
+.login-title{line-height: 45px; text-align: center; border-bottom: 1px solid #D7D7D7; padding: 1px;}
+.login-title h2{font-size: 18px; color: #737373;  background: url("http://mob.com/Assets/images/login/login-title-h2-bg.png") repeat-x; text-shadow: 0 1px 0 #FFFFFF;}
+.login-form{width: 280px; margin: 32px auto 13px;}
+.form-group{position: relative;}
+.form-group{clear: both; margin-bottom: 15px;}
+.form-group label{display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; line-height: 14px; color: #737373; padding-left: 2px;}
+.form-control {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #D7D7D7;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #333333;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 0 6px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.form-control:focus {
+    border-color: #3C9DDE;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(60, 157, 222, 0.6);
+    outline: 0 none;
+}
+
+.imsg{
+    position: absolute;
+    right: 20px;
+    right: -2px;
+    top: -10px;
+    padding-left: 20px;  display: none; float: left; line-height: 32px; height: 34px; color: #949494; font-size: 12px;
+
+}
+.imsg span{ display: block; padding-right: 25px;}
+.msg-info span{
+    background: url("http://mob.com/Assets/images/tips.png") no-repeat scroll right -72px;
+}
+.msg-success span{
+    background:  url("http://mob.com/Assets/images/tips.png") no-repeat scroll right 8px;
+}
+.msg-error span{
+    background:  url("http://mob.com/Assets/images/tips.png") no-repeat scroll right -154px;
+}
+.f-btn-green {
+    background:#6cbc47;
+    border: 1px solid #5aa638;
+    color: #FFFFFF;
+    height: 48px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 24px;
+}
+.checkbox{float: left;}
+.checkbox label{ color: #8f9396;}
+.form-group a{float: right; color: #8f9396; font-size: 14px;}
+.form-action{clear: both; padding-top: 19px;}
+.login-tip{margin-top: 19px; line-height: 14px; border-top: 1px solid #d7d7d7; padding: 19px 0; color: #8f9396;}
+.login-tip a{color: #1a5be1; font-size: 13px; padding: 0 3px;}
+.web_sms_l_btn_h{ display:block; widht:90%; height:40px; line-height:40px;color:#ffffff; font-size:16px; background:#398D3D;}

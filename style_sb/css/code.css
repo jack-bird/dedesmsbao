@@ -1,0 +1,35 @@
+.code_box{ width:100%;}
+.code_banner{width: 100%;height: 400px;background: url(../images/landing-banner.png) 50% 0 no-repeat;margin-top: -20px; border:3px solid red;}
+.subject_box{ width:100%;}
+.subject1{}
+.subject_box1{ width:1100px; margin-left:auto; margin-right:auto;}
+.subject1 h1{ text-align:center; padding-top:50px; font-size:22px; color:#00aaee; font-weight:700;}
+.subject1 p{ text-align:center; padding-top:20px; font-size:15px; color:#777777; font-weight:800;}
+.subject2{ padding-top:50px; padding-left:40px; float:left;}
+.subject2 h2{ color:#00aaee; font-size:17px; font-weight:700; font-family:"微软雅黑"; padding-bottom:15px;}
+.subject2 p{font-size:14px; color:#777777; font-weight:800; line-height:26px;}
+.subject2 p span{ color:#ffb100;}
+.picture1{ background:url(../images/register1.png); height:295px; background-repeat: no-repeat; background-position:right;}
+.subject_box2{ background-color:#fcfcfc; padding-top:50px; margin-top:30px; padding-bottom:30px;}
+.subject_boxa{ width:1100px; margin-left:auto; margin-right:auto; overflow:hidden;}
+.picture2{ background: url(../images/register2.png); height:295px; background-repeat: no-repeat; background-position:left;}
+.subject3 h3{ color:#00aaee; font-size:17px; font-weight:700; font-family:"微软雅黑"; padding-bottom:15px;}
+.subject3{ float:right; padding-top:50px; width:600px;}
+.subject3 p{font-size:14px; color:#777777; font-weight:800; line-height:26px;}
+.yellow{ background-color:gray; padding:8px 15px; color:white; border-radius:5px;}
+.yellow:hover{ background-color:#ff7800;}
+.subject_box3{ width:1100px; margin-left:auto; margin-right:auto; overflow:hidden; margin-top:30px; padding-bottom:50px;}
+.subject4{ padding-top:20px;float:left; width:600px;}
+.subject4 h3{ color:#00aaee; font-size:17px; font-weight:700; font-family:"微软雅黑"; padding-bottom:15px;}
+.subject4 p{font-size:14px; color:#777777; font-weight:800; line-height:26px; }
+.subject4 p span{ color:#ffb100;}
+.picture3{ background: url(../images/register3.png); height:295px; background-repeat: no-repeat; background-position:right;}
+.subject_box4{ background-color:#fcfcfc; padding-bottom:50px; padding-top:20px;}
+.subject5{ float:right; padding-top:50px; width:600px;}
+.subject5 h3{ color:#00aaee; font-size:17px; font-weight:700; font-family:"微软雅黑"; padding-bottom:15px;}
+.subject5 p{font-size:14px; color:#777777; font-weight:800; line-height:26px;}
+.picture4{ background: url(../images/register4.png); height:295px; background-repeat: no-repeat; background-position:left;}
+.yellow2{ background-color:gray; padding:8px 15px; color:white; border-radius:5px;}
+.yellow2:hover{ background-color:#ff7800;}
+.blue{ background-color:gray; padding:8px 15px; color:white; border-radius:5px; margin-left:20px;}
+.blue:hover{ background-color:#00aaee;}

@@ -1,0 +1,578 @@
+<DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>短信接口开发教程</title>
+<meta name="keywords" content="短信接口,短信接口api" />
+<meta name="description" content="最全最详细的短信接口开发教程，短信宝为您提供简洁的开发接接口，让你在没有后顾之忧。" />
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/code.css">
+<link  rel="stylesheet"  href="/style_sb/css/lists.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+                	"dataType" : "text",
+        "data" : {"win":window.location.href},
+                "success" : function(){}
+            });
+        });
+
+    </script>
+</head>
+<!--
+原模板：plugin_content_list.htm
+-->
+<body  class="index">
+
+<div  class="wrapper">
+    <script type="text/javascript" src="/style_sb/js/sub_column.js"></script>
+<script type="text/javascript" src="/style_sb/js/base.js"></script>
+
+
+
+<div  class="top-bar ">
+    <div  class="webContainer">
+        <div  class="top-box">
+            <ul  class="contact-bar">
+                <li  class="tel last">400-716-3021</li>
+            </ul>
+            <ul id="current_member" class="user-bar" style="float:right">
+                <li  class="active first"><a title="短信宝用户登入" href="/login">登录</a></li>
+                <li  class="last"><a title="短信宝用户注册" href="/reg">注册</a></li>
+            </ul>
+            <!--
+            <div class="search">
+                <form  name="formsearch" action="/plus/search.php">
+                    <div class="form">
+                        <input type="hidden" name="kwtype" value="0" />
+                        <input id="search-option" type="hidden" name="searchtype" value="title" />
+                        <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+                        <button type="submit" class="search-submit"></button>
+                    </div>
+                </form>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<script>
+    $(function() {
+        if ($(".user-bar").length > 0) {
+            $(".user-bar li").hover(function() {
+                $(this).find('ul').show();
+            }, function() {
+                $(this).find('ul').hide();
+            });
+            $(".language-bar li").hover(function() {
+                $(this).find('div').show();
+            }, function() {
+                $(this).find('div').hide();
+            });
+        }
+
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+
+					$.ajax({
+						url: "http://beta.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+							}
+                                                }
+					});
+				
+});
+</script>
+<div id="nav">
+    <div class="nav_main">
+        <div class="nav_main_div"><a title="短信宝短信平台" href="/"><img src="../images/logo.png" alt="短信宝短信平台"/></a></div>
+        <ul class="nav_main_ul_one">
+
+            <li class="nav_item"><a title="短信宝首页" href="/">首 页</a></li>
+            <li class="nav_item show_column">
+                <a href="javascript:void(0);">黑板报</a>
+                <ul class="columnShow-inline">
+                    <li>
+                        <h3><a title="短信谁在用" href="/buzz" target="_blank">谁 在 用</a></h3>
+                    </li>
+
+                    <li>
+                   <h3><a title="干货分享" href="/application" target="_blank">干货分享</a></h3>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav_item"><a title="使用指南" href="/help">使用指南</a></li>
+            <li class="nav_item"><a title="短信接口" href="/openapi">短信接口</a></li>
+            <li class="nav_item"><a title="短信插件" href="/plugin">建站插件</a></li>
+            <!--<li class="nav_item"><a title="合作联盟" href="/joinin">合作联盟</a></li>-->
+            <li class="nav_item"><a title="短信价格查询" href="/fee">资费标准</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var pageIdentify = 'menu35';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>
+
+    
+<script>
+    $(function() {
+        $(".user-bar li").hover(function() {
+            $(this).find('ul').show();
+        }, function() {
+            $(this).find('ul').hide();
+        });
+        $(".language-bar li").hover(function() {
+            $(this).find('div').show();
+        }, function() {
+            $(this).find('div').hide();
+        });
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+
+					$.ajax({
+						url: "http://beta.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退�?/a></li>");
+							}
+                                                }
+					});
+
+});
+</script>
+
+<script>
+    var pageIdentify = 'menu38';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>
+
+
+<!--主体内容开-->
+<div  class="main-box">
+    <div class="banner_img">
+    	<div class="details_banner"></div>
+    </div>
+    <div  class="sitecon">
+        <div  class="container">
+            <div  class="about_site">
+                您的位置：<a href='/'>短信宝</a> > <a href='/plugin'>建站插件</a>
+            </div>
+        </div>
+    </div>
+    <div class="object">
+    <!--左边-->
+    <div class="left_box">
+
+        <div class="left_box1">
+        <h1><a href="/plugin/89.html">微赞系统短信宝短信插件</a></h1>
+         <h2>by smsbao  | 微赞,微赞系统短信插件,短信宝</h2>
+        <div class="left_box2">
+            <img src='/images/defaultpic.gif' border='0' width='121' height='75' alt='微赞系统短信宝短信插件'>
+        </div>
+        	<div class="left_box3">
+                <dd>
+                <p>微赞微信管理系统短信宝插件 微赞微信管理系统短信宝插件属于短信宝针对微赞微信管理系统短信模块的延伸。 微赞微信管理系统短信宝插件...</p>
+                <a href="/plugin/89.html"> more>>></a>
+                </dd>
+            </div>
+        </div><div class="left_box1">
+        <h1><a href="/plugin/87.html">小猪o2o短信宝短信插件</a></h1>
+         <h2>by smsbao  | 小猪o2o,小猪o2o短信插件,短信宝</h2>
+        <div class="left_box2">
+            <img src='/images/defaultpic.gif' border='0' width='121' height='75' alt='小猪o2o短信宝短信插件'>
+        </div>
+        	<div class="left_box3">
+                <dd>
+                <p>小猪o2o短信宝插件 小猪o2o短信宝插件属于短信宝针对小猪o2o程序短信模块的延伸。 小猪o2o_短信宝插件_utf8...</p>
+                <a href="/plugin/87.html"> more>>></a>
+                </dd>
+            </div>
+        </div><div class="left_box1">
+        <h1><a href="/plugin/86.html">ThinkSNS短信宝短信插件</a></h1>
+         <h2>by smsbao  | ThinkSNS,ThinkSNS短信插件,短信宝</h2>
+        <div class="left_box2">
+            <img src='/images/defaultpic.gif' border='0' width='121' height='75' alt='ThinkSNS短信宝短信插件'>
+        </div>
+        	<div class="left_box3">
+                <dd>
+                <p>ThinkSNS短信宝插件 1.短信服务器填： http://api.smsbao.com/sms 2.短信参数填： u=短信宝用户名p=md5加密后密码m={tel}c={message}3 3.成功返回标识：0 4.短信模板填： 【您的网站名称】您的验证码为...</p>
+                <a href="/plugin/86.html"> more>>></a>
+                </dd>
+            </div>
+        </div><div class="left_box1">
+        <h1><a href="/plugin/84.html">ECShop小京东短信宝短信插件</a></h1>
+         <h2>by smsbao  | ECShop小京东,ECShop小京东短信插件,短信宝</h2>
+        <div class="left_box2">
+            <img src='/images/defaultpic.gif' border='0' width='121' height='75' alt='ECShop小京东短信宝短信插件'>
+        </div>
+        	<div class="left_box3">
+                <dd>
+                <p>ECShop小京东短信宝插件 ecshop小京东_gbk_smsbao ecshop小京东_uft8_smsbao...</p>
+                <a href="/plugin/84.html"> more>>></a>
+                </dd>
+            </div>
+        </div><div class="left_box1">
+        <h1><a href="/plugin/82.html">友价源码短信宝短信插件</a></h1>
+         <h2>by smsbao  | 友价源码,友价源码短信插件,短信宝</h2>
+        <div class="left_box2">
+            <img src='/images/defaultpic.gif' border='0' width='121' height='75' alt='友价源码短信宝短信插件'>
+        </div>
+        	<div class="left_box3">
+                <dd>
+                <p>进入后台-基本资料-通信设置 ，将代码改成如下所示，然后填入短信框里 （注意：有些没有在后台直接添加，需要将函数保存为php文件，保存到config/mobphp/mysendsms.php） GBK版本 function...</p>
+                <a href="/plugin/82.html"> more>>></a>
+                </dd>
+            </div>
+        </div>
+
+        <div class="Page">
+<ul>
+<li><a href='list_35_1.html'>首页</a></li>
+<li><a href='list_35_8.html'>上一页</a></li>
+<li><a href='list_35_1.html'>1</a></li>
+<li><a href='list_35_2.html'>2</a></li>
+<li><a href='list_35_3.html'>3</a></li>
+<li><a href='list_35_4.html'>4</a></li>
+<li><a href='list_35_5.html'>5</a></li>
+<li><a href='list_35_6.html'>6</a></li>
+<li><a href='list_35_7.html'>7</a></li>
+<li><a href='list_35_8.html'>8</a></li>
+<li class="thisclass">9</li>
+<li><a href='list_35_10.html'>10</a></li>
+<li><a href='list_35_11.html'>11</a></li>
+<li><a href='list_35_10.html'>下一页</a></li>
+<li><a href='list_35_12.html'>末页</a></li>
+<li><span class="pageinfo">共 <strong>12</strong>页<strong>59</strong>条</span></li>
+
+</ul>
+   		<div class="clearfix"></div>
+        </div>
+    </div>
+    <!--右边-->
+        <div class="right_box">
+            <div class="search">
+                <form name="formsearch" action="/plus/search.php" style="display:inline;">
+                    <input type="hidden" name="kwtype" value="0">
+                    <input name="q" type="text" class="search-text search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}" onblur="if(this.value==''){this.value='在这里搜索...';}">
+                    <!--<input class="search-text" name="keyword" type="text" value="请输入关键字" />-->
+                    <input id="search-option" type="hidden" name="searchtype" value="title">
+                    <a onclick="formsearch.submit();" class="search-btn" style="cursor: pointer;"></a>
+                </form>
+            </div>
+            	<h1>文章标签</h1>
+                <ul id="tag_lists_t">
+                    
+                    <li><a href="/tags.php?/%E6%B1%9F%E6%B9%96%E5%AE%B6%E5%B1%85/">江湖家居</a></li>
+                    
+                    <li><a href="/tags.php?/%E4%B8%80%E5%85%83%E4%BA%91%E8%B4%AD/">一元云购</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%BE%97%E6%8E%A8%E6%A0%A1%E5%9B%ADO2O/">得推校园O2O</a></li>
+                    
+                    <li><a href="/tags.php?/Yun_EC%E7%94%B5%E5%95%86%E7%B3%BB%E7%BB%9F/">Yun_EC电商系统</a></li>
+                    
+                    <li><a href="/tags.php?/PHP%E5%AE%B6%E8%A3%85/">PHP家装</a></li>
+                    
+                    <li><a href="/tags.php?/NZ%E6%BA%90%E7%A0%81%E4%BA%A4%E6%98%93/">NZ源码交易</a></li>
+                    
+                    <li><a href="/tags.php?/%E6%98%8A%E6%B5%B7%E6%8B%BC%E5%9B%A2/">昊海拼团</a></li>
+                    
+                    <li><a href="/tags.php?/SOMCNS/">SOMCNS</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%B8%9D%E5%9B%BDCMS/">帝国CMS</a></li>
+                    
+                    <li><a href="/tags.php?/%E9%98%BF%E7%8B%B8%E5%AD%90/">阿狸子</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%A4%A7%E5%95%86%E5%88%9B/">大商创</a></li>
+                    
+                    <li><a href="/tags.php?/%E7%A8%8B%E5%BC%8FCMS/">程式CMS</a></li>
+                    
+                    <li><a href="/tags.php?/CmsEasy/">CmsEasy</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%B0%8F%E9%B8%9F%E4%BA%91/">小鸟云</a></li>
+                    
+                    <li><a href="/tags.php?/zhicms/">zhicms</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%BE%AE%E6%93%8E/">微擎</a></li>
+                    
+                    <li><a href="/tags.php?/iWebShop/">iWebShop</a></li>
+                    
+                    <li><a href="/tags.php?/%E6%98%9F%E5%A4%96%E4%B8%BB%E6%9C%BA/">星外主机</a></li>
+                    
+                    <li><a href="/tags.php?/PHPYUN/">PHPYUN</a></li>
+                    
+                    <li><a href="/tags.php?/Discuz/">Discuz</a></li>
+                    
+                    <li><a href="/tags.php?/astgo/">astgo</a></li>
+                    
+                    <li><a href="/tags.php?/%E9%BD%90%E5%8D%9A%E5%9C%B0%E6%96%B9%E9%97%A8%E6%88%B7/">齐博地方门户</a></li>
+                    
+                    <li><a href="/tags.php?/PHPCMS/">PHPCMS</a></li>
+                    
+                    <li><a href="/tags.php?/%E6%80%9D%E9%80%94%E6%97%85%E6%B8%B8/">思途旅游</a></li>
+                    
+                    <li><a href="/tags.php?/dedecms/">dedecms</a></li>
+                    
+                    <li><a href="/tags.php?/%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81/">虚拟货币</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%B0%8F%E7%8C%AA/">小猪</a></li>
+                    
+                    <li><a href="/tags.php?/%E8%8A%9D%E9%BA%BB%E4%B9%90/">芝麻乐</a></li>
+                    
+                    <li><a href="/tags.php?/tpshop/">tpshop</a></li>
+                    
+                    <li><a href="/tags.php?/%E8%A5%BF%E9%83%A8%E6%95%B0%E7%A0%81/">西部数码</a></li>
+                    
+                    <li><a href="/tags.php?/%E6%96%B9%E7%BB%B4/">方维</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%BE%AE%E7%9B%92%E5%BE%AE%E4%BF%A1/">微盒微信</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%BE%AE%E8%B5%9E/">微赞</a></li>
+                    
+                    <li><a href="/tags.php?/%E9%AA%91%E5%A3%AB%E4%BA%BA%E6%89%8D%E7%B3%BB%E7%BB%9F/">骑士人才系统</a></li>
+                    
+                    <li><a href="/tags.php?/EcTouch/">EcTouch</a></li>
+                    
+                    <li><a href="/tags.php?/wordpress/">wordpress</a></li>
+                    
+                    <li><a href="/tags.php?/%E5%BF%AB%E6%8D%B7%E8%AE%A2%E9%A4%90/">快捷订餐</a></li>
+                    
+                    <li><a href="/tags.php?/KPPW%E5%A8%81%E5%AE%A2/">KPPW威客</a></li>
+                    
+                </ul>
+
+
+        </div>
+    </div>
+</div>
+<!--主体内容结束-->
+
+
+
+    <div  class="footer ">
+    <div  class="webContainer">
+        <div  class="footer-nav-box service">
+          
+        </div>
+        <div  class="footer-nav-box support">
+            <div  class="footer-title">
+                <h2><a href="/contactus" style="color:#fff">联系我们</a></h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <p>
+                    客服邮箱：<br>
+                    support@smsbao.com
+                    <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="短信宝客服" title="短信宝客服" /></a>
+
+                </p>
+                <!--<p class="webQQgroup"><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=15766f40539827f7fb3d10bb9b9699b6a7ff3cfa7162341d46cb8f79e4f7dae3"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="点击这里加入此群" title="点击这里加入此群"></a></p>-->
+            </div>
+        </div>
+        <div  class="footer-nav-box aboutus">
+            <div  class="footer-title">
+                <h2>使用指南</h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <ul>
+                    
+                    <li  class="first">
+                        <a  href="/help/index.html">使用指南</a><br />
+                    </li>
+                    <li  class="first">
+                        <a  href="/help/faq.html">常见问题</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="footer-nav-box aboutus">
+            <div  class="footer-title">
+                <h2><a href="/aboutus" style="color:#fff">关于我们</a></h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <ul>
+                    <li  class="first">
+                        <a  href="http://t.qq.com/smsbao" target="_blank">腾讯微博</a><br />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="footer-qcode">
+            <img  class="lazy"  src="/style_sb/images/qr-code.png"  height="141">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('body').on('click', '.qq', function(e){
+            $('.contact-qq').parent().find('iframe').contents().find('#launchBtn').click()
+        });
+    });
+</script>
+<div  class="clear"></div>
+<div  class="page-bottom">
+	<ul><li>友情链接：</li><li><a href='http://www.gap.cn/' target='_blank'>GAP</a> </li><li><a href='http://www.kaola100.com/' target='_blank'>考拉网</a> </li><li><a href='http://www.luzhou.com/' target='_blank'>大泸网</a> </li><li><a href='http://www.bbs-p2p.com' target='_blank'>P2P理财论坛</a> </li><li><a href='http://www.wforder.com/' target='_blank'>WFPHP在线订单管理系统</a> </li><li><a href='http://www.niucms.cn/' target='_blank'>Niucms智慧生活系统</a> </li><li><a href='http://www.yungoucms.com' target='_blank'>yungoucms</a> </li><li><a href='http://www.lanyecn.com/' target='_blank'>蓝叶云</a> </li><li><a href='http://www.zhicms.cc' target='_blank'>zhicms</a> </li><li><a href='http://www.liuliangx.com' target='_blank'>兜兜友</a> </li><li><a href='http://www.demohour.com/' target='_blank'>点名时间</a> </li><li><a href='http://hua.li' target='_blank'>花里花店</a> </li><li><a href='http://oldnavy.gap.cn/' target='_blank'>Old Navy</a> </li><li><a href='http://www.wqggg.com/' target='_blank'>万千购</a> </li></ul>
+    <p>Copyright © 2010-2014 smsbao.com All Rights Reserved <br />上海子橙电子科技有限公司 沪ICP备14008182号-1 上海市松江区广富林路658弄215号</p>
+</div>
+<link href="/kefu/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/kefu/js/kefu.js"></script>
+<!--在线客服Begin-->
+<div id="floatTools" class="rides-cs">
+	<div class="floatL">
+		<a style="display: block" id="aFloatTools_Show" class="btnOpen" title="查看在线客服" onclick="javascript:$('#divFloatToolsView').animate({width: 'show', opacity: 'show'}, 'normal',function(){ $('#divFloatToolsView').show();kf_setCookie('RightFloatShown', 0, '', '/', 'www.smsbao.com'); });$('#aFloatTools_Show').attr('style','display:none');$('#aFloatTools_Hide').attr('style','display:block');" href="javascript:void(0);">
+		展开</a>
+		<a style="display: none" id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" onclick="javascript:$('#divFloatToolsView').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){ $('#divFloatToolsView').hide();kf_setCookie('RightFloatShown', 1, '', '/', 'www.smsbao.com'); });$('#aFloatTools_Show').attr('style','display:block');$('#aFloatTools_Hide').attr('style','display:none');" href="javascript:void(0);">
+		收缩</a> </div>
+	<div id="divFloatToolsView" class="floatR" style="display: none">
+		<div class="cn">
+                                 <h3>工作时间</h3>
+			<ul>
+				<li><span>周一至周五</span></li>
+                                           <li><span>9:00 - 18:00</span></li>
+			</ul>
+
+                                <h3>热线电话</h3>
+			<ul>
+				<li><span>400-716-3021</span></li>
+			</ul>
+
+			<h3>产品支持</h3>
+			<ul>
+				<li><span>客服</span>
+				<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="短信宝客服" title="短信宝客服" /></a>
+				</li>
+			</ul>
+			<h3>渠道合作</h3>
+			<ul>
+				<li><span>客服</span>
+				<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="渠道合作" title="渠道合作" /></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--在线客服End-->
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254025928'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1254025928' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">
+var _maq = _maq || [];
+var key = "UV_APPLE";
+_maq.push(['apiKey', '100000'],['name', key]);
+(function() {
+    var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
+    ma.src = ('https:' == document.location.protocol ? 'https://stats' : 'http://stats') + '.smsbao.com/webstats.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
+</div>
+
+</div>
+<script>
+$(function(){
+    if ($("#nav").length > 0) {
+ var pathName = window.location.pathname;
+        var curIndex = 0;
+        var navNode = $("#nav");
+
+       // pathName = pathName.replace("/", "");
+
+        if (-1 != pathName.indexOf("index") || pathName == "") {
+            curIndex = 0;
+        } else if (-1 != pathName.indexOf("buzz") || -1 != pathName.indexOf("application") || -1 != pathName.indexOf("tags")) {
+            curIndex = 1;
+        } else if (-1 != pathName.indexOf("help")) {
+            curIndex = 2;
+        } else if (-1 != pathName.indexOf("openapi")) {
+            curIndex = 3;
+        } else if (-1 != pathName.indexOf("plugin")) {
+            curIndex = 4;
+        } else if (-1 != pathName.indexOf("joinin")) {
+            curIndex = 5;
+        } else if (-1 != pathName.indexOf("fee")) {
+            curIndex = 6;
+        } else {
+            curIndex = 0;
+        }
+//alert(curIndex);
+        $(".nav_item").find("a").removeClass("navCur");
+$(".nav_item").eq(curIndex).children("a").addClass("navCur");
+      
+}
+
+    var rightBox = $(".right_box");
+
+    if (rightBox.length > 0) {
+
+        var index = 0;
+        var that = null;
+
+        rightBox.find("li").each(function() {
+            that = $(this);
+            index = that.index();
+
+            if (0 == index % 2) {
+                
+                that.css("float", "right");
+            }
+        });
+    }
+
+    if ($(".show_column").length > 0) {
+        $(".show_column").subColumnShow({
+            "pullDownBgColor":"#fff",
+            "pullDownBorder":"1px solid #eee",
+            "showSpeed":200
+        });
+    }
+
+    if($(".news_con").length > 0){
+        $(".webContainer").css("width", 1200);
+        $(".nav_main").css("width", 1200);
+        $(".page-bottom").find("ul").css("width", 1200);
+        $(".page-bottom").find("p").css("width", 1200);
+        
+    }
+
+    if ($("#tag_lists_t").length > 0) {
+        var tagListsNode = $("#tag_lists_t").find("li > a");
+        tagListsNode.each(function () {
+            var that = $(this);
+            if (that.text() == "一元云购") {
+                that.attr("href", "http://mp.weixin.qq.com/s?__biz=MzAwNDk0MTk4MQ==&mid=100000001&idx=1&sn=7ada831f9dcdf6460f96e006805e9766#rd");
+
+            }
+        });
+    }
+});
+</script>
+
+</body></html>

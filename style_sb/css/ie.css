@@ -1,0 +1,180 @@
+.edittext,.mceContentBody,.itemlist .text .mb10,.institutions,.bus,.fwcontact,.fwcontact .fwcontactlist,.journalbox,.donate,.weixcon,.edittext .noveltylist,.edittext .noveltylist li,.processlist,.edittext .mediareports,.oh,.container,.navbar-nav .secnav ul,.navbar-right .lang,.indsous .souscon,.indprimarybox,.hotcon,.lecturecon,.indnewsbox,.cyzylist,.interactlist,.gthdlist,.searchcon,.slidebox_3 .textbox,.slidebox_3 .ctrldirection,.readers,.readers .title,.readers .title,.newslisttop,.newslist li,.paginal,.activitiescon,.activitiescon .activitylist,.activityconlist .aitemlist,.activityconlist .aitemlist li,.exhibition,.leclist,.leclist .lecimgbox,.recslist li,.messagehead,.selpcon .selplist,.selpcon,.messform .item,.messform .messinfo .datecon,.replybox .replycon .item_reply,.replylist li,.lostform .title,.losttitle,.donationlist li,.seltype,.seltype .seltypelist,.ressearch,.atextdata,.subjectdata,.literaturedata,.textdatalist,.subdatalist,.databasecon,.datatop,.mediatopcon,.slidebox_4 .ctrldirection,.mediabtn,.lecture .lecturebox,.lecturebox .lecturelist,.sitebook{zoom:1;}
+.clearfix {zoom:1;}
+.subslidecon ,.searchform,.messtext .messbott,.messtop,.seldatacon,.res_sel,.signform li,.cxwtcon,.sub_serv,.sub_serv a,.sub_topright .subsearch,.subconbox,.academic,.lecturetranlist,.lecturetranlist .signup,.bztop ul,.bzbottom,.bzseltop,.rankyear,.rankyear .rankyearlist,.ranklist,.yytrain li,.fwsqcon,.onlinexxi .search,.onlinexxi .search .onlinesearch,.intelligence,.intelligence .img, .exhibition .img,.sitemap .sitemapnav,.formbox .formtitle,.onformlist,.onformlist li,.signtopcon,ul.mrvideo,.mrtop,.databtn,.videolist,.stylish-select .selectedTxt span{zoom:1;}
+
+.indsearch .searchform .submit_1{*padding:5px 30px 0 30px;}
+.slidebox_3 .textbox,.slidebox_4 .textbox{filter:Alpha(opacity=60);}
+.slidebox_3 .ctrl a,.newsvtop .newsvcon .bg,.videolist .img .bg{filter:Alpha(opacity=50);}
+.selphotobox .bg,.messbott .bottshow .botshowcon .bg{filter:Alpha(opacity=20);}
+
+#cboxTitle .bg{filter:Alpha(opacity=40);}
+
+.signform .label_1{
+	*float:left;
+	*margin:0 25px 0 0;
+}
+
+.signbox .signform .newListSelected{
+	*float:left;
+}
+
+.jspPane
+{
+	*position: relative;
+	*width:100%;
+}
+
+.jspVerticalBar .jspArrow,.jspHorizontalBar .jspArrow
+{
+	filter:Alpha(opacity=0);
+}
+
+.xboxOverlay{filter:Alpha(opacity=50);}
+
+
+/* NAVBAR */
+
+/* !CPU HIGH, fix for IE6 shake when scroll */
+* html,* html body {
+  _background-image:url(about:blank);
+  _background-attachment:fixed;
+}
+/* !CPU HIGH, fix for IE6 not support fixed position */
+.navbar-fixed-top {
+  _position:absolute;
+  _bottom:auto;
+  _top:expression(eval(document.documentElement.scrollTop));
+}
+/* !CPU HIGH, fix for IE6 not support fixed position */
+.navbar-fixed-bottom {
+  _position:absolute;
+  _bottom:auto;
+  _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+}
+
+/* DROPDOWN */
+.dropup,
+.dropdown {
+  *zoom:1;
+}
+
+/* CLOSE */
+.close {
+  _font-size: 15px;
+}
+
+.modal-header h3 {
+  *display: inline;
+  *zoom:1;
+}
+
+/* MODALS */
+.modal-backdrop {
+  _position: absolute;
+  _top:0;
+  _margin-top:0;
+  _width:expression(eval(document.documentElement.scrollWidth));
+  _height:expression(eval(document.documentElement.scrollHeight));
+}
+.modal {
+  _position:absolute;
+  _top:0;
+  _margin-top:0;
+  _top:expression(eval(document.documentElement.scrollTop));
+}
+.modal.fade.in {
+  _filter:alpha(opacity=100);
+}
+.modal-backdrop {
+  _filter: alpha(opacity=80);
+}
+.modal-body {
+  _height:expression(this.scrollHeight > 400 ? "400px" : "auto");
+}
+
+
+
+
+
+
+
+
+
+
+/* 禁用响应式布局：重新设置container的宽度。如果没有后面三行的代码，在IE6环境下navbar-top会显示为940px宽度 */
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+    width:1170px;
+}
+
+@media (max-width: 1198px) {
+	.container,
+	.navbar-static-top .container,
+	.navbar-fixed-top .container,
+	.navbar-fixed-bottom .container {
+		width:980px;
+	}
+}
+
+
+
+/* 修复ie6下分页组件css解析失败的问题 */
+.pagination .active a,
+.pagination .active span {
+  z-index: 2;
+  color: #ffffff;
+  cursor: default;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+/* 修复ie6下input样式被重写的问题*/
+.form-control{
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+
+.navbar-brand{
+	_position:absolute;
+	_left:0;
+	_top:0;
+	_float:none;
+}
+.navbar-nav{
+	_margin:0 0 0 120px;
+	_float:left;
+}
+.navbar-nav ul{
+	_left:0;
+	_float:none;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

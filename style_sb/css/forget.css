@@ -1,0 +1,54 @@
+.forgot-form-box{
+    width: 998px;
+    padding-top: 150px;
+}
+.forgot-form-box .forgot-form{
+    width: 392px;
+    margin: 0 auto;
+}
+
+.forgot-form-box .forgot-form .mail{
+    width: 390px;
+    height: 48px;
+    border: solid 1px #dddddd;
+    padding-left: 17px;
+    border-radius: 3px;
+    font-size: 18px;
+    color: #a8a7a5;
+}
+.forgot-form-box .forgot-form .prompt{
+    font-size: 12px;
+    line-height: 50px;
+    color: #313131;
+}
+.forgot-form-box .forgot-form .prompt .contact{
+    color: #359ade;
+}
+
+.forgot-form-box .forgot-form .forgot-btn{
+    display: block;
+    width: 392px;
+    height: 50px;
+    background: url("style_sb/images/forgot_btn.png") top no-repeat scroll;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 30px;
+}
+.forgot-form-box .forgot-form .forgot-btn:hover{
+    background: url("style_sb/images/images/forgot_btn.png") bottom no-repeat scroll;
+}
+
+
+.f-btn-green {
+    background:#6cbc47;
+    border: 1px solid #5aa638;
+    color: #FFFFFF;
+    height: 48px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 24px;
+}

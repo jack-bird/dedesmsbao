@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>关于我们_马上使用更好的短信服务-短信宝官网</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/style_sb/css/ie.css">
+<![endif]-->
+
+<!--[if lt IE 9]>
+      <script src="/style_sb/js/html5shiv.min.js"></script>
+      <script src="/style_sb/js/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if lt IE 7]>
+<script src="/style_sb/js/DD_belatedPNG.js"></script>
+<script type="text/javascript"> 
+	DD_belatedPNG.fix();
+</script> 
+<![endif]-->
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/right_menu.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/style_sb/js/right_menu.js"></script>
+<script type="text/javascript" src="/style_sb/js/jquery.jscrollpane.min.js"></script>
+    <script>
+        $(function() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+		"dataType" : "text",
+        	"data" : {"win":window.location.href},
+                "success" : function(){}
+            });
+        });
+
+    </script>
+    <style>
+        .about-title {
+            font-size:18px;
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .about-ul {
+            width:950px;
+            height:260px;
+            margin:0 auto;
+        }
+
+        .about-ul li {
+            width:316px;
+            float:left;
+        }
+
+        .about-ul li img {
+            margin:0 auto;
+            display:block;
+
+        }
+    </style>
+</head>
+<body  class="index">
+<div  class="wrapper">
+<script type="text/javascript" src="/style_sb/js/sub_column.js"></script>
+<script type="text/javascript" src="/style_sb/js/base.js"></script>
+
+
+
+<div  class="top-bar ">
+    <div  class="webContainer">
+        <div  class="top-box">
+            <ul  class="contact-bar">
+                <li  class="tel last">400-716-3021</li>
+            </ul>
+            <ul id="current_member" class="user-bar" style="float:right">
+                <li  class="active first"><a title="短信宝用户登入" href="/login">登录</a></li>
+                <li  class="last"><a title="短信宝用户注册" href="/reg">注册</a></li>
+            </ul>
+            <!--
+            <div class="search">
+                <form  name="formsearch" action="/plus/search.php">
+                    <div class="form">
+                        <input type="hidden" name="kwtype" value="0" />
+                        <input id="search-option" type="hidden" name="searchtype" value="title" />
+                        <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+                        <button type="submit" class="search-submit"></button>
+                    </div>
+                </form>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<script>
+    $(function() {
+        if ($(".user-bar").length > 0) {
+            $(".user-bar li").hover(function() {
+                $(this).find('ul').show();
+            }, function() {
+                $(this).find('ul').hide();
+            });
+            $(".language-bar li").hover(function() {
+                $(this).find('div').show();
+            }, function() {
+                $(this).find('div').hide();
+            });
+        }
+
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+
+					$.ajax({
+						url: "http://beta.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+							}
+                                                }
+					});
+				
+});
+</script>
+<div id="nav">
+    <div class="nav_main">
+        <div class="nav_main_div"><a title="短信宝短信平台" href="/"><img src="../images/logo.png" alt="短信宝短信平台"/></a></div>
+        <ul class="nav_main_ul_one">
+
+            <li class="nav_item"><a title="短信宝首页" href="/">首 页</a></li>
+            <li class="nav_item show_column">
+                <a href="javascript:void(0);">黑板报</a>
+                <ul class="columnShow-inline">
+                    <li>
+                        <h3><a title="短信谁在用" href="/buzz" target="_blank">谁 在 用</a></h3>
+                    </li>
+
+                    <li>
+                   <h3><a title="干货分享" href="/application" target="_blank">干货分享</a></h3>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav_item"><a title="使用指南" href="/help">使用指南</a></li>
+            <li class="nav_item"><a title="短信接口" href="/openapi">短信接口</a></li>
+            <li class="nav_item"><a title="短信插件" href="/plugin">建站插件</a></li>
+            <!--<li class="nav_item"><a title="合作联盟" href="/joinin">合作联盟</a></li>-->
+            <li class="nav_item"><a title="短信价格查询" href="/fee">资费标准</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var pageIdentify = 'menu51';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>
+
+<!--主体内容开始-->
+<div  class="main-box">
+    <div  class="index-banner height150">
+        <div  class="banner height150"  alt="0"  style="background-image: url(/style_sb/images/new_kf_banner_bg.png); background-position: 50% 50%; background-repeat: initial initial;"></div>
+    </div>
+    <div  class="sitecon">
+        <div  class="container">
+            <div  class="about_site">
+                您的位置：<a href=''>短信宝</a> > <a href='/aboutus/'>关于我们</a> > </div>
+        </div>
+    </div>
+
+    <div class="share-box">
+        <div class="container contSub">
+            <div class="webPageContent">
+                <div class="webOpenapiCon">
+                    <h1 class="webOpenapiTit">关于我们</h1>
+                    <p>短信宝，隶属于上海子橙电子科技有限公司，成立于2012年，公司致力于为客户提供专业的电信增值服务，帮助企业便捷接入验证码短信、短信通知、语音验证码、国际验证码、短信公众号、短信营销、彩信营销、数字奖励营销、手机话费充值、手机流量充值等电信增值服务，满足企业运营、营销推广多场景需要。</p>
+                    <p>本公司经过多年的技术积累与创新，树立在该领域的标杆地位。业务平台及软件全部自主研发，且都通过了国家知识产权认定。公司率先推出行业领先的电信增值业务智能监控报警方案，通过故障自动检测与隔离，让用户在使用电信增值业务时更加安全高效。</p>
+                    <p>本公司核心团队在互联网及通讯行业有十几年的技术研发和运营维护经验，掌握高性能、高并发、大数据处理技术。</p>
+                </div><br>
+                <h3 class="about-title">企业资质</h3>
+                <ul class="about-ul">
+                    <li><img src="/images/yyzz.jpg" alt="营业执照"/></li>
+                    <li><img src="/images/jrdm.jpg" alt="服务接入证"/></li>
+                    <li><img src="/images/zzyw.jpg" alt="增值业务证"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div  class="clear"></div>
+<script>
+    var arcIdentify = 'menuarc51';
+    if (arcIdentify) {
+        $("#"+arcIdentify).addClass('active');
+    }
+</script>
+<!--主体内容结束-->
+<div  class="footer ">
+    <div  class="webContainer">
+        <div  class="footer-nav-box service">
+          
+        </div>
+        <div  class="footer-nav-box support">
+            <div  class="footer-title">
+                <h2><a href="/contactus" style="color:#fff">联系我们</a></h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <p>
+                    客服邮箱：<br>
+                    support@smsbao.com
+                    <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="短信宝客服" title="短信宝客服" /></a>
+
+                </p>
+                <!--<p class="webQQgroup"><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=15766f40539827f7fb3d10bb9b9699b6a7ff3cfa7162341d46cb8f79e4f7dae3"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="点击这里加入此群" title="点击这里加入此群"></a></p>-->
+            </div>
+        </div>
+        <div  class="footer-nav-box aboutus">
+            <div  class="footer-title">
+                <h2>使用指南</h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <ul>
+                    
+                    <li  class="first">
+                        <a  href="/help/index.html">使用指南</a><br />
+                    </li>
+                    <li  class="first">
+                        <a  href="/help/faq.html">常见问题</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="footer-nav-box aboutus">
+            <div  class="footer-title">
+                <h2><a href="/aboutus" style="color:#fff">关于我们</a></h2>
+                <span  class="ft-bg"></span>
+            </div>
+            <div  class="footer-box">
+                <ul>
+                    <li  class="first">
+                        <a  href="http://t.qq.com/smsbao" target="_blank">腾讯微博</a><br />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="footer-qcode">
+            <img  class="lazy"  src="/style_sb/images/qr-code.png"  height="141">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('body').on('click', '.qq', function(e){
+            $('.contact-qq').parent().find('iframe').contents().find('#launchBtn').click()
+        });
+    });
+</script>
+<div  class="clear"></div>
+<div  class="page-bottom">
+	<ul><li>友情链接：</li><li><a href='http://www.gap.cn/' target='_blank'>GAP</a> </li><li><a href='http://www.kaola100.com/' target='_blank'>考拉网</a> </li><li><a href='http://www.luzhou.com/' target='_blank'>大泸网</a> </li><li><a href='http://www.bbs-p2p.com' target='_blank'>P2P理财论坛</a> </li><li><a href='http://www.wforder.com/' target='_blank'>WFPHP在线订单管理系统</a> </li><li><a href='http://www.niucms.cn/' target='_blank'>Niucms智慧生活系统</a> </li><li><a href='http://www.yungoucms.com' target='_blank'>yungoucms</a> </li><li><a href='http://www.lanyecn.com/' target='_blank'>蓝叶云</a> </li><li><a href='http://www.zhicms.cc' target='_blank'>zhicms</a> </li><li><a href='http://www.liuliangx.com' target='_blank'>兜兜友</a> </li><li><a href='http://www.demohour.com/' target='_blank'>点名时间</a> </li><li><a href='http://hua.li' target='_blank'>花里花店</a> </li><li><a href='http://oldnavy.gap.cn/' target='_blank'>Old Navy</a> </li><li><a href='http://www.wqggg.com/' target='_blank'>万千购</a> </li></ul>
+    <p>Copyright © 2010-2014 smsbao.com All Rights Reserved <br />上海子橙电子科技有限公司 沪ICP备14008182号-1 上海市松江区广富林路658弄215号</p>
+</div>
+<link href="/kefu/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/kefu/js/kefu.js"></script>
+<!--在线客服Begin-->
+<div id="floatTools" class="rides-cs">
+	<div class="floatL">
+		<a style="display: block" id="aFloatTools_Show" class="btnOpen" title="查看在线客服" onclick="javascript:$('#divFloatToolsView').animate({width: 'show', opacity: 'show'}, 'normal',function(){ $('#divFloatToolsView').show();kf_setCookie('RightFloatShown', 0, '', '/', 'www.smsbao.com'); });$('#aFloatTools_Show').attr('style','display:none');$('#aFloatTools_Hide').attr('style','display:block');" href="javascript:void(0);">
+		展开</a>
+		<a style="display: none" id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" onclick="javascript:$('#divFloatToolsView').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){ $('#divFloatToolsView').hide();kf_setCookie('RightFloatShown', 1, '', '/', 'www.smsbao.com'); });$('#aFloatTools_Show').attr('style','display:block');$('#aFloatTools_Hide').attr('style','display:none');" href="javascript:void(0);">
+		收缩</a> </div>
+	<div id="divFloatToolsView" class="floatR" style="display: none">
+		<div class="cn">
+                                 <h3>工作时间</h3>
+			<ul>
+				<li><span>周一至周五</span></li>
+                                           <li><span>9:00 - 18:00</span></li>
+			</ul>
+
+                                <h3>热线电话</h3>
+			<ul>
+				<li><span>400-716-3021</span></li>
+			</ul>
+
+			<h3>产品支持</h3>
+			<ul>
+				<li><span>客服</span>
+				<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="短信宝客服" title="短信宝客服" /></a>
+				</li>
+			</ul>
+			<h3>渠道合作</h3>
+			<ul>
+				<li><span>客服</span>
+				<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA0NjAyMV8yNTU0MzFfNDAwMDA5MDQ2NV8yXw">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:123456:51" alt="渠道合作" title="渠道合作" /></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--在线客服End-->
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254025928'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1254025928' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">
+var _maq = _maq || [];
+var key = "UV_APPLE";
+_maq.push(['apiKey', '100000'],['name', key]);
+(function() {
+    var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
+    ma.src = ('https:' == document.location.protocol ? 'https://stats' : 'http://stats') + '.smsbao.com/webstats.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
+</div>
+
+</div>
+</body></html>

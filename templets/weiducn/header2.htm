@@ -1,0 +1,244 @@
+<script type="text/javascript">
+    $().ready(function() {
+        var $loginForm = $("#loginForm");
+        var $username = $("#username");
+        var $password = $("#password");
+        var $submit = $("#login-submit");
+        // 订单提交
+        $submit.click(function() {
+            $.ajax({
+                url: "/common/public_key.jhtml",
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                beforeSend: function() {
+                    $submit.prop("disabled", true);
+                },
+                success: function(data) {
+                    var rsaKey = new RSAKey();
+                    rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+                    var enPassword = hex2b64(rsaKey.encrypt($password.val()));
+                    $.ajax({
+                        url: $loginForm.attr("action"),
+                        type: "POST",
+                        data: {
+                            username: $username.val(),
+                            enPassword: enPassword
+                        },
+                        dataType: "json",
+                        cache: false,
+                        success: function(message) {
+                            $submit.prop("disabled", false);
+                            if (message.type == "success") {
+                                location.href = "/member/index.jhtml";
+                            } else {
+                                location.href = "/login.jhtml?errorInfo="+encodeURI(message.content)+"&username="+$username.val();							}
+                        }
+                    });
+                }
+            });
+
+
+        });
+    });
+</script>
+<script type="text/javascript">
+    (function($) {
+
+        var placeholderfriend = {
+            focus: function(s) {
+                s = $(s).hide().prev().show().focus();
+                var idValue = s.attr("id");
+                if (idValue) {
+                    s.attr("id", idValue.replace("placeholderfriend", ""));
+                }
+                var clsValue = s.attr("class");
+                if (clsValue) {
+                    s.attr("class", clsValue.replace("placeholderfriend", ""));
+                }
+            }
+        }
+
+        //判断是否支持placeholder
+        function isPlaceholer() {
+            var input = document.createElement('input');
+            return "placeholder" in input;
+        }
+        //不支持的代码
+        if (!isPlaceholer()) {
+            $(function() {
+
+                var form = $(this);
+
+                //遍历所有文本框，添加placeholder模拟事件
+                var elements = form.find("input[type='text'][placeholder],textarea[placeholder]");
+
+                if (elements.length !== 0) {
+                    $.each(elements, function(i) {
+                        var s = $(this);
+                        var pValue = s.attr("placeholder");
+                        var sValue = s.val();
+                        var isUserEnter = 0; // 是否为用户输入内容,placeholder允许用户的输入和默认内容一样
+                        if (pValue) {
+                            if (sValue == '') {
+                                s.val(pValue);
+                            }
+                        }
+
+                        $(this)
+                                .focus(function() {
+                                    var s = $(this);
+                                    var pValue = s.attr("placeholder");
+                                    var sValue = s.val();
+                                    if (sValue && pValue) {
+                                        if (sValue == pValue && !isUserEnter) {
+                                            s.val('');
+                                        }
+                                    }
+                                })
+                                .blur(function() {
+                                    var s = $(this);
+                                    var pValue = s.attr("placeholder");
+                                    var sValue = s.val();
+                                    if (!sValue) {
+                                        s.val(pValue);
+                                        isUserEnter = 0;
+                                    }
+                                })
+                                .keyup(function(){
+                                    if ($(this).val() !== pValue) isUserEnter = 1;
+                                });
+
+
+                    });
+                }
+                //遍历所有密码框，添加placeholder模拟事件
+                var elementsPass = form.find("input[type='password'][placeholder]");
+                elementsPass.each(function(i) {
+                    var s = $(this);
+                    var pValue = s.attr("placeholder");
+                    var sValue = s.val();
+                    if (pValue) {
+                        if (sValue == '') {
+                            //DOM不支持type的修改，需要复制密码框属性，生成新的DOM
+                            var html = this.outerHTML || "";
+                            html = html.replace(/\s*type=(['"])?password\1/gi, " type=text placeholderfriend")
+                                    .replace(/\s*(?:value|on[a-z]+|name)(=(['"])?\S*\1)?/gi, " ")
+                                    .replace(/\s*placeholderfriend/, " placeholderfriend value='" + pValue
+                                            + "' " + "onfocus='placeholderfriendfocus(this);' ");
+                            var idValue = s.attr("id");
+                            if (idValue) {
+                                s.attr("id", idValue + "placeholderfriend");
+                            }
+                            var clsValue = s.attr("class");
+                            if (clsValue) {
+                                s.attr("class", clsValue + "placeholderfriend");
+                            }
+                            s.hide();
+                            s.after(html);
+                        }
+                    }
+                });
+
+                elementsPass.blur(function() {
+                    var s = $(this);
+                    var sValue = s.val();
+                    if (sValue == '') {
+                        var idValue = s.attr("id");
+                        if (idValue) {
+                            s.attr("id", idValue + "placeholderfriend");
+                        }
+                        var clsValue = s.attr("class");
+                        if (clsValue) {
+                            s.attr("class", clsValue + "placeholderfriend");
+                        }
+                        s.hide().next().show();
+                    }
+
+                });
+
+            });
+        }
+        window.placeholderfriendfocus = placeholderfriend.focus;
+    })(jQuery);
+</script>
+</head>
+<body  class="index">
+<div  class="wrapper">
+    <!--header -->
+    <div  class="top-bar ">
+        <div  class="webContainer">
+            <div  class="top-box">
+                <ul  class="contact-bar">
+                    <li  class="tel last">400-009-0465</li>
+                </ul>
+                <ul id="current_member" class="user-bar" style="float:right">
+                    <li  class="active first"><a  href="/login">登录</a></li>
+                    <li  class="last"><a  href="/reg">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $(".user-bar li").hover(function() {
+                $(this).find('ul').show();
+            }, function() {
+                $(this).find('ul').hide();
+            });
+            $(".language-bar li").hover(function() {
+                $(this).find('div').show();
+            }, function() {
+                $(this).find('div').hide();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $().ready(function() {
+            var $current_member = $("#current_member");
+            var $login_box = $("#login_box");
+
+            $.ajax({
+                url: "http://www.smsbao.com/common/current_member.jhtml",
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                success: function(message) {
+                    if (message.isLogin == "true") {
+
+                        $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+                        $login_box.html("<div class='login-welcome'><h2 class='mr9'>欢迎您来到短信宝</h2><h3 class='mr9'>体验最好用的短信服务</h3></div><form class='login-form'><div class='login-btn-box'><h3 class='mr9'>您的短信宝账号是："+message.username+"</h3></div><a href='/member/index.jhtml'' class='web_sms_l_btn_h'>进入我的短信宝</a></form><div class='bottom-reg'></div>");
+
+                    }
+                }
+            });
+
+        });
+    </script>
+    <div id="nav">
+        <div class="nav_main">
+            <ul class="nav_main_ul_one">
+                <li class="logo">
+                    <img src="images/logo.png" />
+                </li>
+                <li class="nav_item"><a href="/">首 页</a></li>
+                <li class="nav_item show_column">
+                    <a href="javascript:void(0);">黑板报</a>
+                    <ul class="columnShow-inline">
+                        <li>
+                            <h3><a href="/buzz" target="_blank">谁 在 用</a></h3>
+                        </li>
+
+                        <!--<li>-->
+                        <!--<h3><a href="#" target="_blank">应用教程</a></h3>-->
+                        <!--</li>-->
+                    </ul>
+                </li>
+                <li class="nav_item"><a href="/help">使用指南</a></li>
+                <li class="nav_item"><a href="/openapi">短信接口</a></li>
+                <li class="nav_item"><a href="/plugin">建站插件</a></li>
+                <!--<li class="nav_item"><a href="/joinin">合作联盟</a></li>-->
+                <li class="nav_item"><a href="/fee">资费标准</a></li>
+            </ul>
+        </div>
+    </div>

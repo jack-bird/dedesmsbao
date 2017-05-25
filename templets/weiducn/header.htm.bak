@@ -1,0 +1,68 @@
+<div  class="top-bar ">
+<div  class="webContainer">
+    <div  class="top-box">
+        <ul  class="contact-bar">
+            <li  class="tel last">400-009-0465</li>
+        </ul>
+        <ul id="current_member" class="user-bar" style="float:right">
+            <li  class="active first"><a  href="/login">登录</a></li>
+            <li  class="last"><a  href="/reg">注册</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+<script>
+    $(function() {
+        $(".user-bar li").hover(function() {
+            $(this).find('ul').show();
+        }, function() {
+            $(this).find('ul').hide();
+        });
+        $(".language-bar li").hover(function() {
+            $(this).find('div').show();
+        }, function() {
+            $(this).find('div').hide();
+        });
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+
+					$.ajax({
+						url: "http://beta.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+							}
+                                                }
+					});
+				
+});
+</script>
+<div  class="navbar">
+    <div  class="webContainer">
+        <div  class="logo">
+            <a  href="{dede:global.cfg_cmsurl/}/"><img  src="/style_sb/images/logo.png"></a>
+        </div>
+        <ul  class="navbar-nav">
+            <li class="nav-menu"><a id="menu0" href="{dede:global.cfg_cmsurl/}/" class="menu">首页</a></li>
+            {dede:type typeid=2}<li class="nav-menu"><a id="menu[field:id/]" href="[field:typelink/]" class="menu">[field:typename/]</a></li>{/dede:type}
+            {dede:type typeid=41}<li class="nav-menu"><a id="menu[field:id/]" href="[field:typelink/]" class="menu">[field:typename/]</a></li>{/dede:type}
+            {dede:type typeid=34}<li class="nav-menu"><a id="menu[field:id/]" href="[field:typelink/]" class="menu">[field:typename/]</a></li>{/dede:type}
+            {dede:type typeid=35}<li class="nav-menu"><a id="menu[field:id/]" href="[field:typelink/]" class="menu">[field:typename/]</a></li>{/dede:type}
+            {dede:type typeid=38}<li class="nav-menu"><a id="menu[field:id/]" href="[field:typelink/]" class="menu">[field:typename/]</a></li>{/dede:type}
+            {dede:type typeid=37}<li class="nav-menu"><a id="menu[field:id/]" href="[field:typelink/]" class="menu">[field:typename/]</a></li>{/dede:type}
+        </ul>
+    </div>
+</div>
+<script>
+    var pageIdentify = 'menu{dede:field.typeid/}';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>

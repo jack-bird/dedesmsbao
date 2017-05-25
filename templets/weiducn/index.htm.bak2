@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/page.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/jsbn.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/prng4.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/rng.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/rsa.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/base64.js"></script>
+<script type="text/javascript" src="/resources/shop2/js/common.js"></script>
+    <script type="text/javascript" src="/style_sb/js/sub_column.js"></script>
+    <script type="text/javascript" src="/style_sb/js/shuffle_banner.js"></script>
+    <script type="text/javascript" src="/style_sb/js/base.js"></script>
+
+    {dede:include filename="header2.htm"/}
+
+    <div id="banner">
+        <div id="center_main3">
+
+            <ul class="autoSwitchAllScreen-main">
+                <li>
+                    <a href="javascript:void(0)" name="#86DD3E"><img src="images/banner/banner01.png" /></a>
+                    <div class="banner-text">
+                        <h3>玩转短信</h3>
+                        <dl>
+                            <dt>抛弃垃圾通道</dt>
+                            <dd>速度太慢？我们的发送速度：36万条/小时！</dd>
+                            <dd>到达率低？我们的短信到达率：99%！</dd>
+                            <dd>全网不覆盖？我们一点支持三大运营商多种短信通讯协议！</dd>
+                            <dd>乱扣费？我们真实透明展示全过程！</dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <!--name="url(./images/banner/bg1.jpg)"-->
+                    <a href="javascript:void(0)" name="#CCCCCC"><img src="images/banner/banner02.png" /></a>
+                    <div class="banner-text">
+                        <h3>开放接口</h3>
+                        <dl>
+                            <dt>与您现有的网站无缝对接</dt>
+                            <dd>标准的HTTP短信开放接口</dd>
+                            <dd>让您的网站迅速完成短信接入工作</dd>
+                            <dd>提供C#、ASP、JAVA、PHP等多种语言演示案例</dd>
+                            <dd><a href="/openapi">More >></a></dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" name="#71ABD7"><img src="images/banner/banner03.png" /></a>
+                    <div class="banner-text">
+                        <h3>插件支持丰富</h3>
+                        <dl>
+                            <dt>您需要的我们都已经帮您做了。</dt>
+                            <dd>针对市场上所有主流web程序，开发短信插件。</dd>
+                            <dd>插件安装简单，只需覆盖源文件即可完成。</dd>
+                            <dd>方便对技术不熟悉的用户使用。</dd>
+                            <dd><a href="/plugin">More >></a></dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" name="#20BBC2"><img src="images/banner/banner04.png" /></a>
+                    <div class="banner-text">
+                        <h3>发送通道多样化</h3>
+                        <dl>
+                            <dt>内容覆盖所有的行业需求。</dt>
+                            <dd>验证码短信 - 3~5秒极速送达，提高用户体验度。</dd>
+                            <dd>祝福短信 - 把您的关怀，随时送到客户心中。</dd>
+                            <dd>通知短信 - 精准的送达，让您的客户及时获知。</dd>
+                            <dd>营销短信 - 高密度覆盖，您的客户遍布天下。</dd>
+                        </dl>
+                    </div>
+                </li>
+            </ul>
+            <div  class="allScreen-icon">
+                <ul>
+
+                </ul>
+            </div>
+
+            <div id="login_box" class="login-box clear">
+                <div class="login-welcome">
+                    <h2 class="mr9">欢迎您来到短信宝</h2>
+                    <h3 class="mr9">体验最好用的短信服务</h3>
+                </div>
+                <form id="loginForm" class="login-form" method="post" action="/login/submit.jhtml">
+                    <div class="form-input">
+                        <div class="input-l"></div>
+                        <div class="user-icon">
+                            <span></span>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" name="username" id="username" placeholder="请输入您的用户名">
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <div class="input-l"></div>
+                        <div class="pass-icon">
+                            <span></span>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" name="password" id="password" placeholder="请填写密码">
+                        </div>
+                    </div>
+                    <div class="login-btn-box">
+                        <a href="/password/find.jhtml" class="forget">忘记密码？</a>
+                        <a href="javascript:;" id="login-submit" class="login-btn" data-loading-text="Loading">登录</a>
+                    </div>
+                    <div class="tips">
+                    </div>
+                </form>
+                <div class="bottom-reg">
+                    <a href="/reg">立即注册</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="webProIntro"></div>
+
+    <div class="share-box pt20">
+        <div class="webContainer">
+            <div class="content">
+                <div class="share-l web_news_box">
+                    <div class="clearfix">
+                        <h3 class="artical-title">应用教程</h3>
+                        {dede:arclist typeid=48 limit='0,5' titlelen=60 infolen=110  orderby='pubdate' }
+                        <dl class="news_box">
+                            <dt><a href="[field:arcurl/]" target="_blank">[field:title/]</a></dt>
+                            <dd><a href="[field:arcurl/]" target="_blank"> [field:info/]...</a></dd>
+                        </dl>
+                        {/dede:arclist}
+
+
+
+                        <h3 class="artical-title" style="margin:5px 0 0 0; clear:both;">建站插件</h3>
+                        <ul id="plug">
+                            {dede:arclist typeid=35 limit='0,12' titlelen=60 infolen=120  orderby='pubdate' }
+                            <li><a href="[field:arcurl/]" target="_blank">[field:title/]</a></li>
+                            {/dede:arclist}
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="share-r">
+                    <div id="sidebar" class="fix">
+                        <div id="widgets" class="intro">
+
+                            <div id="text-8" class="widget_text widget"><div class="winner"><h4 class="wtitle">腾讯微博  t.qq.com/smsbao</h4>
+                                <div class="textwidget"><iframe frameborder="0" scrolling="no" src="http://v.t.qq.com/show/show.php?n=smsbao&amp;w=312&amp;h=550&amp;fl=2&amp;l=6&amp;o=17&amp;c=4&amp;si=e69f8982e9c1b3160f91fc328ea9e067c8b857e3&amp;cs=000000_F1F1F1_000000_F1F1F1" width="312" height="550"></iframe></div>
+                                &nbsp;</div></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="share-box">
+        <div class="webContainer">
+            <div class="content">
+                <dl class="web_home_link_box">
+                    <dt>已经有超过<em>9000</em>个网站，正在使用短信宝服务</dt>
+                    <dd class="clearfix">
+                        {dede:flink row='8' type='image' titlelen="24" typeid="1"}
+                        [field:link /]
+                        {/dede:flink}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+<!--主体内容开始-->
+
+<div  class="clear"></div>
+<!--主体内容结束-->
+
+
+<script  type="text/javascript">
+//    banner
+    $(function() {
+        function changeBanner(index) {
+            var banners = [];
+            banners.push('style_sb/images/banner.jpg');
+            banners.push('style_sb/images/banner1.jpg');
+            banners.push('style_sb/images/banner2.jpg');
+            banners.push('style_sb/images/banner3.jpg');
+            //console.log(index);
+            if (index == null) {
+                index = parseInt($('.banner').attr('alt'));
+            }
+            var bannerLength = banners.length;
+            var next = 0;
+            if (index == (bannerLength - 1)) {
+                next = 0;
+            } else {
+                next = index + 1;
+            }
+            $('.banner').css({
+                'background': 'url(' + banners[index] + ') center center'
+            });
+            $('.banner').attr('alt', next);
+            $('.pagination li').removeClass('current');
+            $('.pagination li').eq(index).addClass('current');
+        }
+        changeBanner();
+        var changeBannerTimes = setInterval(function() {
+            changeBanner();
+        }, 4000);
+        $('.pagination li a').on('click', function() {
+            clearInterval(changeBannerTimes);
+            var index = parseInt($(this).html());
+            changeBanner(index);
+            return false;
+        });
+        $('.index-banner').hover(function() {
+            clearInterval(changeBannerTimes);
+        }, function() {
+            changeBannerTimes = setInterval(function() {
+                changeBanner();
+            }, 4000);
+        });
+    });
+
+</script>
+{dede:include filename="footer.htm"/}
+</div>
+</body></html>

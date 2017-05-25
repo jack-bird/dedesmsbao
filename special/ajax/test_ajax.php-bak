@@ -1,0 +1,235 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: king
+ * Date: 16/4/5
+ * Time: 上午11:22
+ */
+//file_put_contents("aa.txt", 111);
+session_start();
+require '../plugin/DBTool.php';
+date_default_timezone_set('PRC');
+//const
+
+$statusStr = array(
+    "0" => "短信发送成功",
+    "-1" => "参数不全",
+    "-2" => "服务器空间不支持,请确认支持curl或者fsocket，联系您的空间商解决或者更换空间！",
+    "30" => "密码错误",
+    "40" => "账号不存在",
+    "41" => "余额不足",
+    "42" => "帐户已过期",
+    "43" => "IP地址限制",
+    "50" => "内容含有敏感词"
+);
+
+if(isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest") {
+
+    $phone = null;
+    $currentDay = time();
+    $dayStart = strtotime(date('Y-m-d', time()));
+    $dayEnd = $dayStart + (24 * 3600);
+    $ip = null;
+    $flg = false;
+    $err = chechInput();
+    // 通过验证
+
+    if (null === $err) {
+        // 获取用户ip
+        $ip = getIP();
+        $phone = $_POST['test'];
+        // 分别获取当前时间，当天开始和结束时间。
+        $currentDay = time();
+        $dayStart = strtotime(date('Y-m-d', time()));
+        $dayEnd = $dayStart + (24 * 3600);
+
+        $ipId = getCurrentIpId($ip);
+        $phoneInfo = getPhoneInfo($phone, $dayStart, $dayEnd);
+        //file_put_contents('./abc.txt', $data);
+        if (empty($ipId) && empty($phoneInfo)) { // 如果ip和手机号(当天)都不存在，则通过。
+            $ipId = insertIp($ip);
+            $bool = insertPhone($ipId, $phone);
+            $flg = !empty($bool) ? true : false;
+        } else if (!empty($ipId) && empty($phoneInfo)) { // 如果ip存在，手机不存在，则继续判断
+            // 判断当前ip当天是否使用了3次。如果已经使用了3次则不通过。如果没有使用3次，则通过。
+            $cnt = getIpCnt($ipId, $dayStart, $dayEnd);
+
+            if ($cnt >= 3) {
+                $flg = false;
+                $err = '该电脑的当天免费测试额度已使用完毕。';
+            } else {
+                $bool = insertPhone($ipId, $phone); // 记录手机号码
+                $flg = !empty($bool) ? true : false;
+            }
+        } else if (empty($ipId) && !empty($phoneInfo)) { // 如果ip不存在，手机存在，则继续判断
+            // 判断手机当天是否使用了3次。如果已经使用了3次，则不通过。如果没有，则通过。
+            $cnt = getPhoneCnt($phone, $dayStart, $dayEnd);
+
+            if ($cnt >= 3) {
+                $flg = false;
+                $err = '该号码的当天免费测试额度已使用完毕。';
+            } else {
+                $ipId = insertIp($ip); // 记录ip地址，返回写入的id。
+                $bool = insertPhone($ipId, $phone); // 记录手机号码
+                $flg = !empty($bool) ? true : false;
+            }
+        } else { // 如果ip和手机号码都存在。则继续判断  15:20:20 15:21:20
+            $ipCnt = getIpCnt($ipId, $dayStart, $dayEnd);
+            $phoneCnt = getPhoneCnt($phone, $dayStart, $dayEnd);
+            $bool = isIn60($ipId, $phone, ($currentDay - 60));
+            // 判断ip或电话当天是否是已经使用了3次。
+            if ($ipCnt >= 3 || $phoneCnt >= 3) {
+               // $flg = true;
+               // $err = null;
+                $flg = false;
+                $err = $ipCnt >= 3 ? '该电脑的当天免费测试额度已使用完毕。' : '该号码的当天免费测试额度已使用完毕。';
+            } else if ($bool) { // 如果ip和电话的组合在60秒之内有使用，则不通过。
+                $flg = false;
+                $err = '2次测试发送请间隔需要60秒。';
+            } else {
+                $bool = insertPhone($ipId, $phone); // 记录手机号码
+                $flg = !empty($bool) ? true : false;
+            }
+        }
+
+        if (false === $flg && null === $err) {
+            $err = '未知错误，请稍后重试';
+        }
+    }
+    // 全部成功，发送信息
+    if (true === $flg && null === $err) {
+        $testCode = rand(10000, 99999);
+        $smsapi =  'http://api.smsbao.com/';
+        $user = 'king19800105'; //短信平台帐号
+        $pass = md5("19800105q"); //短信平台密码
+        //【短信宝】短信宝极速试用验证码{code}，验证码在{time}分钟内有效。
+        $content='【短信宝】短信宝极速试用验证码' . $testCode . '，验证码在1分钟内有效。若非本人操作请忽略此消息。';//要发送的短信内容
+        //$phone = "*****";//要发送短信的手机号码
+        $sendurl = $smsapi."sms?u=".$user."&p=".$pass."&m=".$phone."&c=".urlencode($content);
+        $result =file_get_contents($sendurl) ;
+
+        if (0 != $result) {
+            $flg = false;
+            $err = $statusStr[$result];
+        }
+    }
+
+    echo json_encode(array('flg'=>$flg, 'error'=>$err));
+    exit;
+}
+
+function chechInput() {
+    $err = null;
+
+    if (!empty($_POST['test'])) {
+        $bool = checkPhone($_POST['test']);
+
+        if (!$bool) {
+            $err = '输入的手机号码格式不正确。';
+        }
+    } else {
+        $err = '请输入测试的手机号码。';
+    }
+
+    if (!empty($_POST['verify_code'])) {
+        $bool = checkCode($_POST['verify_code']);
+
+        if (!$bool) {
+            $err = '验证码不正确。';
+        }
+
+    } else {
+        $err = '请输入验证码。';
+    }
+
+    return $err;
+}
+
+function checkPhone($val)
+{
+    return preg_match('/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/', $val);
+}
+
+function checkCode($val)
+{
+    return isset($_SESSION['verify']) && ($val === strtolower($_SESSION['verify']) || $val === $_SESSION['verify'] || $val === strtoupper($_SESSION['verify']));
+}
+
+function getIP()
+{
+    global $ip;
+
+    if (getenv("HTTP_CLIENT_IP"))
+        $ip = getenv("HTTP_CLIENT_IP");
+    else if(getenv("HTTP_X_FORWARDED_FOR"))
+        $ip = getenv("HTTP_X_FORWARDED_FOR");
+    else if(getenv("REMOTE_ADDR"))
+        $ip = getenv("REMOTE_ADDR");
+    else
+        $ip = null;
+
+    return $ip;
+}
+
+function getCurrentIpId($ip)
+{
+    $sql = "SELECT id FROM test_ip WHERE ip=:ip";
+    $db = DBTool::getInstance();
+    $ipId = $db->getOne($sql, array(':ip'=>$ip));
+
+    return $ipId;
+}
+
+function getPhoneInfo($phone, $startTime, $endTime)
+{
+    $sql = "SELECT id, test_ip_id, created_at FROM test_phone WHERE phone=:phone AND created_at BETWEEN {$startTime} AND {$endTime}";
+    $db = DBTool::getInstance();
+    $data = $db->getAll($sql, array(':phone'=>$phone));
+
+    return $data;
+}
+
+function getIpCnt($id, $startTime, $endTime)
+{
+    $sql = "SELECT COUNT(*) FROM test_phone WHERE test_ip_id=:test_ip_id AND created_at BETWEEN {$startTime} AND {$endTime}";
+    $db = DBTool::getInstance();
+    $data = $db->getOne($sql, array(':test_ip_id'=>$id));
+
+    return $data;
+}
+
+function getPhoneCnt($phone, $startTime, $endTime)
+{
+    $sql = "SELECT COUNT(*) FROM test_phone WHERE phone=:phone AND created_at BETWEEN {$startTime} AND {$endTime}";
+    $db = DBTool::getInstance();
+    $data = $db->getOne($sql, array(':phone'=>$phone));
+
+    return $data;
+}
+
+function insertPhone($ipId, $phone)
+{
+    $db = DBTool::getInstance();
+    $arr = array('test_ip_id'=>':test_ip_id', 'phone'=>':phone', 'created_at'=>time());
+    $params = array(':test_ip_id'=>$ipId, ':phone'=>$phone);
+
+    return $db->insert($arr, 'test_phone', $params);
+}
+
+function insertIp($ip)
+{
+    $db = DBTool::getInstance();
+    $arr = array('ip'=>':ip', 'created_at'=>time());
+    $params = array(':ip'=>$ip);
+
+    return $db->insert($arr, 'test_ip', $params);
+}
+
+function isIn60($ipId, $phone, $overTime)
+{
+    $sql = "SELECT COUNT(*) FROM test_phone WHERE test_ip_id=:test_ip_id AND phone=:phone AND created_at > {$overTime}";
+    $db = DBTool::getInstance();
+    $data = $db->getOne($sql, array(':test_ip_id'=>$ipId, ':phone'=>$phone));
+
+    return $data;
+}

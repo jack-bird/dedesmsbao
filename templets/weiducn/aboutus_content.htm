@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/style_sb/css/ie.css">
+<![endif]-->
+
+<!--[if lt IE 9]>
+      <script src="/style_sb/js/html5shiv.min.js"></script>
+      <script src="/style_sb/js/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if lt IE 7]>
+<script src="/style_sb/js/DD_belatedPNG.js"></script>
+<script type="text/javascript"> 
+	DD_belatedPNG.fix();
+</script> 
+<![endif]-->
+<link  rel="stylesheet"  href="/style_sb/css/common.css">
+<link  rel="stylesheet"  href="/style_sb/css/right_menu.css">
+<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/style_sb/js/right_menu.js"></script>
+<script type="text/javascript" src="/style_sb/js/jquery.jscrollpane.min.js"></script>
+    <script>
+        $(function() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+		"dataType" : "text",
+        	"data" : {"win":window.location.href},
+                "success" : function(){}
+            });
+        });
+
+    </script>
+</head>
+<body  class="index">
+<div  class="wrapper">
+{dede:include filename="header.htm"/}
+<!--主体内容开始-->
+<div  class="main-box">
+    <div  class="index-banner height150">
+        <div  class="banner height150"  alt="0"  style="background-image: url(/style_sb/images/new_kf_banner_bg.png); background-position: 50% 50%; background-repeat: initial initial;"></div>
+    </div>
+    <div  class="sitecon">
+        <div  class="container">
+            <div  class="about_site">
+                您的位置：{dede:field name='position'/}</div>
+        </div>
+    </div>
+
+    <div class="share-box">
+        <div class="container contSub">
+            <div class="webPageContent">
+                <div class="webOpenapiCon">
+                    <h1 class="webOpenapiTit">联系方式</h1>
+                    <ul>
+                        <li>公司地址：上海市松江区广富林路658弄215号</li>
+                        <li>400电话：400-716-3021</li>
+                        <li>营销QQ：4000090465</li>
+                        <li>邮件地址：support@smsbao.com</li>
+                    </ul>
+                </div><br>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div  class="clear"></div>
+<script>
+    var arcIdentify = 'menuarc{dede:field.id/}';
+    if (arcIdentify) {
+        $("#"+arcIdentify).addClass('active');
+    }
+</script>
+<!--主体内容结束-->
+{dede:include filename="footer.htm"/}
+</div>
+</body></html>

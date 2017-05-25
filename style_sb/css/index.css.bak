@@ -1,0 +1,26 @@
+.banner .login-box{ width: 348px; height: 382px; float: right; margin-top: 27px; box-shadow: 0 1px 10px rgba(1, 1, 1, 0.5); }
+.banner .login-box .login-welcome{ width: 348px;height: 92px; padding-top:34px; border-bottom: solid 1px #d7dbde; background: url("../images/login-welcome.png") no-repeat; float: left; text-align: center; *height:90px; }
+.banner .login-box .login-welcome h2{color: #6582ad; font-size: 24px; line-height: 24px; margin-bottom: 17px;}
+.banner .login-box .login-welcome h2.wel{font-size: 30px; line-height: 30px; margin-bottom: 6px;}
+.banner .login-box .login-welcome h3{color: #6582ad; font-size: 20px; line-height: 20px;}
+.banner .login-box .login-welcome h3.wel{font-size: 24px;}
+.banner .login-box .login-form{ margin:0!important; width: 300px; height: 160px; border: solid 1px #fff; background: url("../images/index_login_form_bg.png") repeat; padding: 23px; float: left; position: relative; *width:300px; }
+.banner .login-box .login-form .imsg {position: absolute; bottom: 5px; left: 22px; display: block; background: #d8ecf5; width: 300px; padding: 2px; display: none;}
+.banner .login-box .login-form .tips{clear: both; position: absolute; top: 2px; }
+.banner .login-box .login-form .tips .alert{padding: 0; border: none; background: none; margin: 0;}
+.banner .login-box .login-form .input-box{ width: 246px; float: left; }
+.banner .login-box .login-form  .input-l{ width: 5px; height: 44px; background: url("../images/login-input-l.jpg") no-repeat; float: left; }
+.banner .login-box .login-form  .input-r{ width: 5px; height: 44px; margin-top: 0px; background: url("../images/login-input-r.jpg") no-repeat; float: left; }
+.banner .login-box .login-form .input-box input{ width: 246px; height: 44px; border: none; border-top: solid 2px #a9afb3; margin: 0; padding: 0; float: left; background: url("../images/login_input_bg.png") repeat; outline: none; }
+.banner .login-box .login-form .form-input{ margin-bottom: 13px; float: left; }
+.banner .login-box .login-form .user-icon{ width: 44px; height: 44px; background: url("../images/login_input_bg.png") repeat; border: none; border-top: solid 2px #a9afb3; float: left; }
+.banner .login-box .login-form .user-icon span{ display: block; width: 22px; height: 22px; margin: 0 auto; margin-top: 11px; background: url("../images/login_icon.png") top no-repeat; }
+.banner .login-box .login-form .pass-icon{ width: 44px; height: 44px; background: url("../images/login_input_bg.png") repeat; border: none; border-top: solid 2px #a9afb3; float: left; }
+.banner .login-box .login-form .pass-icon span{ display: block; width: 22px; height: 22px; margin: 0 auto; margin-top: 11px; background: url("../images/login_icon.png") bottom no-repeat; }
+.banner .login-box .login-form .login-btn-box{ width: 300px; float: left;}
+.banner .login-box .login-form .login-btn-box .forget{ font-size: 14; color: #6683ae; display: block; float: left; margin-top: 12px; text-decoration: underline; }
+.banner .login-box .login-form .login-btn-box .login-btn{ display: block; width: 138px; height: 45px; background: url("../images/index-_login_btn.png") top no-repeat; float: right; cursor: pointer; text-align: center; line-height: 45px; color: #eff4f8; font-size: 18px; border: none; outline: none; }
+.banner .login-box .login-form .login-btn-box .login-btn:hover{ background: url("../images/index-_login_btn.png") bottom no-repeat; }
+.banner .login-box  .bottom-reg{ width: 350px; height: 48px; background: #398D3D; float: left; text-align: center; line-height: 48px; margin-left:-1px;}
+.banner .login-box  .bottom-reg a{ font-size: 24px; color: #fff; }
+.web_sms_l_btn_h{border: 0;padding: 10px 93px;background: #ffa300;margin: 10px 0 0 0px;display: block;float: left;border-radius: 4px;font-size: 16px;color: #ffffff;}

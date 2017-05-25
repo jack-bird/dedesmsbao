@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<link rel="stylesheet" type="text/css" href="{dede:global.cfg_cmsurl/}/style/css/basic.css"/>
+<link rel="stylesheet" type="text/css" href="{dede:global.cfg_cmsurl/}/style/css/inner.css"/>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<script type="text/javascript">document.getElementById("menu7").className="a1";</script>
+<div class="container">
+  <div class="news_banner"></div>
+  <div class="content">
+    <div class="news">
+      <div class="news_con">
+	    <div class="local" >您的位置：{dede:field name='position'/}>  </div>
+        <div class="general_title">
+          <table width="400" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><img src="{dede:global.cfg_cmsurl/}/style/images/inner_content_title.png" /></td>
+              <td>{dede:field name='typename'/}</td>
+              <td><img src="{dede:global.cfg_cmsurl/}/style/images/inner_content_title.png" /></td>
+            </tr>
+          </table>
+        </div>
+        
+		<div class="news_con_int1"  >{dede:list row='10' pagesize='10' titlelen='240'}
+		 		  <div class="news_right" >
+			  <div class="news_title" ><a href="[field:arcurl/]">[field:title/]</a></div>
+			  <div class="news_word"  ><a href="[field:arcurl/]">[field:description/]...</a></div>
+			  <div class="news_add"><span>日期： </span>[field:pubdate function="GetDateMK(@me)"/]
+			  <span style="margin-left:20px;">来源：</span>[field:source/]</div>
+			  <div class="news_read_more"><a href="[field:arcurl/]"><img alt="查看详细" src="/style/images/news_read_more.gif" /></a></div>
+		  </div>{/dede:list}
+        </div>
+		<div class="clear"></div>
+
+        <div class="page">{dede:pagelist listitem="pageno" listsize="5"/}</div>
+  
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+{dede:include filename="footer.htm"/}
+</body>
+</html>

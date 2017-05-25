@@ -1,0 +1,93 @@
+<div  class="top-bar ">
+    <div  class="webContainer">
+        <div  class="top-box">
+            <ul  class="contact-bar">
+                <li  class="tel last">400-009-0465</li>
+            </ul>
+            <ul id="current_member" class="user-bar" style="float:right">
+                <li  class="active first"><a  href="/login">登录</a></li>
+                <li  class="last"><a  href="/reg">注册</a></li>
+            </ul>
+            <!--
+            <div class="search">
+                <form  name="formsearch" action="{dede:global.cfg_cmsurl/}/plus/search.php">
+                    <div class="form">
+                        <input type="hidden" name="kwtype" value="0" />
+                        <input id="search-option" type="hidden" name="searchtype" value="title" />
+                        <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+                        <button type="submit" class="search-submit"></button>
+                    </div>
+                </form>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<script>
+    $(function() {
+        if ($(".user-bar").length > 0) {
+            $(".user-bar li").hover(function() {
+                $(this).find('ul').show();
+            }, function() {
+                $(this).find('ul').hide();
+            });
+            $(".language-bar li").hover(function() {
+                $(this).find('div').show();
+            }, function() {
+                $(this).find('div').hide();
+            });
+        }
+
+    });
+</script>
+<script type="text/javascript">
+$().ready(function() {
+var $current_member = $("#current_member");
+
+					$.ajax({
+						url: "http://beta.smsbao.com/common/current_member.jhtml",
+						type: "GET",
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if (message.isLogin == "true") {
+
+                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+							}
+                                                }
+					});
+				
+});
+</script>
+<div id="nav">
+    <div class="nav_main">
+        <div class="nav_main_div"><a href="/"><img src="../images/logo.png" /></a></div>
+        <ul class="nav_main_ul_one">
+
+            <li class="nav_item"><a href="/">首 页</a></li>
+            <li class="nav_item show_column">
+                <a href="javascript:void(0);">黑板报</a>
+                <ul class="columnShow-inline">
+                    <li>
+                        <h3><a href="/buzz" target="_blank">谁 在 用</a></h3>
+                    </li>
+
+                    <li>
+                   <h3><a href="/application" target="_blank">干货分享</a></h3>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav_item"><a href="/help">使用指南</a></li>
+            <li class="nav_item"><a href="/openapi">短信接口</a></li>
+            <li class="nav_item"><a href="/plugin">建站插件</a></li>
+            <li class="nav_item"><a href="/joinin">合作联盟</a></li>
+            <li class="nav_item"><a href="/fee">资费标准</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var pageIdentify = 'menu{dede:field.typeid/}';
+    if (pageIdentify) {
+        $("#"+pageIdentify).addClass('cur');
+    }
+</script>
