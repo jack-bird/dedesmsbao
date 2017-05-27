@@ -3,275 +3,273 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=8">
-
-
     <!--<meta http-equiv="Expires" content="0">-->
     <!--<meta http-equiv="Pragma" content="no-cache">-->
     <!--<meta http-equiv="Cache-control" content="no-cache">-->
     <!--<meta http-equiv="Cache" content="no-cache">-->
-<title>{dede:global.cfg_webname/}</title>
-<meta name="description" content="{dede:global.cfg_description/}" />
-<meta name="keywords" content="{dede:global.cfg_keywords/}" />
-<link  rel="stylesheet"  href="/style_sb/css/common.css">
-<link  rel="stylesheet"  href="/style_sb/css/index.css">
-<script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
-<script type="text/javascript" src="/resources/shop2/js/jsbn.js"></script>
-<script type="text/javascript" src="/resources/shop2/js/prng4.js"></script>
-<script type="text/javascript" src="/resources/shop2/js/rng.js"></script>
-<script type="text/javascript" src="/resources/shop2/js/rsa.js"></script>
-<script type="text/javascript" src="/resources/shop2/js/base64.js"></script>
-<script type="text/javascript" src="/resources/shop2/js/common.js"></script>
+    <title>{dede:global.cfg_webname/}</title>
+    <meta name="description" content="{dede:global.cfg_description/}" />
+    <meta name="keywords" content="{dede:global.cfg_keywords/}" />
+    <link  rel="stylesheet"  href="/style_sb/css/common.css">
+    <link  rel="stylesheet"  href="/style_sb/css/index.css">
+    <script type="text/javascript" src="/style_sb/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/resources/shop2/js/jsbn.js"></script>
+    <script type="text/javascript" src="/resources/shop2/js/prng4.js"></script>
+    <script type="text/javascript" src="/resources/shop2/js/rng.js"></script>
+    <script type="text/javascript" src="/resources/shop2/js/rsa.js"></script>
+    <script type="text/javascript" src="/resources/shop2/js/base64.js"></script>
+    <script type="text/javascript" src="/resources/shop2/js/common.js"></script>
     <script type="text/javascript" src="/style_sb/js/sub_column.js"></script>
     <script type="text/javascript" src="/style_sb/js/shuffle_banner.js"></script>
-   <script type="text/javascript" src="/style_sb/js/html5.min.js"></script>
+    <script type="text/javascript" src="/style_sb/js/html5.min.js"></script>
     <script type="text/javascript" src="/style_sb/js/base.js"></script>
-<style>
-    .first_text_right a {
-        color : #999;
-    }
+    <style>
+        .first_text_right a {
+            color : #999;
+        }
 
-    .first_text_right a:hover {
-        color : #88B439;
-    }
+        .first_text_right a:hover {
+            color : #88B439;
+        }
 
-</style>
-<script>
-    $(function() {
-        $.ajax({
-            "url" : "/setting.php",
-            "type" : "get",
-            "data" : null,
-	    //"dataType" : "text",
-            //"data" : {"win":window.location.href},
-            "success" : function(){
-                // data
-                //var _maq = _maq || [];
-                //var key = 'UV_' + data;
-                //_maq.push(['apiKey', '100000'],['name', key]);
-	        }
+    </style>
+    <script>
+        $(function() {
+            $.ajax({
+                "url" : "/setting.php",
+                "type" : "get",
+                "data" : null,
+                //"dataType" : "text",
+                //"data" : {"win":window.location.href},
+                "success" : function(){
+                    // data
+                    //var _maq = _maq || [];
+                    //var key = 'UV_' + data;
+                    //_maq.push(['apiKey', '100000'],['name', key]);
+                }
+            });
         });
-    });
 
-</script>
-<script type="text/javascript">
-    document.domain="smsbao.com";
-$().ready(function() {
+    </script>
+    <script type="text/javascript">
+        $().ready(function() {
 
-var $loginForm = $("#loginForm");
-var $username = $("#username");
-var $password = $("#password");
-var $submit = $("#login-submit");
-	// 订单提交
-	$submit.click(function() {
-               $.ajax({
-				url: "http://www.smsbao.com/common/public_key.jhtml",
-				type: "GET",
-				dataType: "json",
-				cache: false,
-				beforeSend: function() {
-					$submit.prop("disabled", true);
-				},
-				success: function(data) {
-					var rsaKey = new RSAKey();
-					rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
-					var enPassword = hex2b64(rsaKey.encrypt($password.val()));
-					$.ajax({
-						url: $loginForm.attr("action"),
-						type: "POST",
-						data: {
-							username: $username.val(),
-							enPassword: enPassword
-						},
-						dataType: "json",
-						cache: false,
-						success: function(message) {
-							$submit.prop("disabled", false);
-							if (message.type == "success") {
-								location.href = "/member/index.jhtml";
-							} else {
-								location.href = "/login.jhtml?errorInfo="+encodeURI(message.content)+"&username="+$username.val();							}
-						           }
-					});
-				}
-			});
+            var $loginForm = $("#loginForm");
+            var $username = $("#username");
+            var $password = $("#password");
+            var $submit = $("#login-submit");
+            // 订单提交
+            $submit.click(function() {
+                $.ajax({
+                    url: "/common/public_key.jhtml",
+                    type: "GET",
+                    dataType: "json",
+                    cache: false,
+                    beforeSend: function() {
+                        $submit.prop("disabled", true);
+                    },
+                    success: function(data) {
+                        var rsaKey = new RSAKey();
+                        rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+                        var enPassword = hex2b64(rsaKey.encrypt($password.val()));
+                        $.ajax({
+                            url: $loginForm.attr("action"),
+                            type: "POST",
+                            data: {
+                                username: $username.val(),
+                                enPassword: enPassword
+                            },
+                            dataType: "json",
+                            cache: false,
+                            success: function(message) {
+                                $submit.prop("disabled", false);
+                                if (message.type == "success") {
+                                    location.href = "/member/index.jhtml";
+                                } else {
+                                    location.href = "/login.jhtml?errorInfo="+encodeURI(message.content)+"&username="+$username.val();							}
+                            }
+                        });
+                    }
+                });
 
 
-           });
-});
-</script>
-<script type="text/javascript">
-(function($) {
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function($) {
 
-  var placeholderfriend = {
-    focus: function(s) {
-      s = $(s).hide().prev().show().focus();
-      var idValue = s.attr("id");
-      if (idValue) {
-        s.attr("id", idValue.replace("placeholderfriend", ""));
-      }
-      var clsValue = s.attr("class");
-	  if (clsValue) {
-        s.attr("class", clsValue.replace("placeholderfriend", ""));
-      }
-    }
-  }
-
-  //判断是否支持placeholder
-  function isPlaceholer() {
-    var input = document.createElement('input');
-    return "placeholder" in input;
-  }
-  //不支持的代码
-  if (!isPlaceholer()) {
-    $(function() {
-
-      var form = $(this);
-
-      //遍历所有文本框，添加placeholder模拟事件
-      var elements = form.find("input[type='text'][placeholder],textarea[placeholder]");
-
-      if (elements.length !== 0) {
-      $.each(elements, function(i) {
-        var s = $(this);
-        var pValue = s.attr("placeholder");
-		var sValue = s.val();
-		var isUserEnter = 0; // 是否为用户输入内容,placeholder允许用户的输入和默认内容一样
-        if (pValue) {
-          if (sValue == '') {
-            s.val(pValue);
-          }
-        }
-
-       $(this)
-       .focus(function() {
-        var s = $(this);
-        var pValue = s.attr("placeholder");
-		var sValue = s.val();
-        if (sValue && pValue) {
-          if (sValue == pValue && !isUserEnter) {
-            s.val('');
-          }
-        }
-      })
-      .blur(function() {
-        var s = $(this);
-        var pValue = s.attr("placeholder");
-		var sValue = s.val();
-        if (!sValue) {
-          s.val(pValue);
-          isUserEnter = 0;
-        }
-      })
-      .keyup(function(){
-      	if ($(this).val() !== pValue) isUserEnter = 1;
-	  });
-
-
-	  });
-	  }
-      //遍历所有密码框，添加placeholder模拟事件
-      var elementsPass = form.find("input[type='password'][placeholder]");
-      elementsPass.each(function(i) {
-        var s = $(this);
-        var pValue = s.attr("placeholder");
-		var sValue = s.val();
-        if (pValue) {
-          if (sValue == '') {
-            //DOM不支持type的修改，需要复制密码框属性，生成新的DOM
-            var html = this.outerHTML || "";
-            html = html.replace(/\s*type=(['"])?password\1/gi, " type=text placeholderfriend")
-              .replace(/\s*(?:value|on[a-z]+|name)(=(['"])?\S*\1)?/gi, " ")
-              .replace(/\s*placeholderfriend/, " placeholderfriend value='" + pValue
-              + "' " + "onfocus='placeholderfriendfocus(this);' ");
-            var idValue = s.attr("id");
-            if (idValue) {
-              s.attr("id", idValue + "placeholderfriend");
+            var placeholderfriend = {
+                focus: function(s) {
+                    s = $(s).hide().prev().show().focus();
+                    var idValue = s.attr("id");
+                    if (idValue) {
+                        s.attr("id", idValue.replace("placeholderfriend", ""));
+                    }
+                    var clsValue = s.attr("class");
+                    if (clsValue) {
+                        s.attr("class", clsValue.replace("placeholderfriend", ""));
+                    }
+                }
             }
-            var clsValue = s.attr("class");
-			if (clsValue) {
-              s.attr("class", clsValue + "placeholderfriend");
+
+            //判断是否支持placeholder
+            function isPlaceholer() {
+                var input = document.createElement('input');
+                return "placeholder" in input;
             }
-            s.hide();
-            s.after(html);
-          }
-        }
-      });
+            //不支持的代码
+            if (!isPlaceholer()) {
+                $(function() {
 
-      elementsPass.blur(function() {
-        var s = $(this);
-        var sValue = s.val();
-        if (sValue == '') {
-          var idValue = s.attr("id");
-          if (idValue) {
-            s.attr("id", idValue + "placeholderfriend");
-          }
-          var clsValue = s.attr("class");
-		  if (clsValue) {
-            s.attr("class", clsValue + "placeholderfriend");
-          }
-          s.hide().next().show();
-        }
+                    var form = $(this);
 
-      });
+                    //遍历所有文本框，添加placeholder模拟事件
+                    var elements = form.find("input[type='text'][placeholder],textarea[placeholder]");
 
-    });
-  }
-  window.placeholderfriendfocus = placeholderfriend.focus;
-})(jQuery);
-</script>
+                    if (elements.length !== 0) {
+                        $.each(elements, function(i) {
+                            var s = $(this);
+                            var pValue = s.attr("placeholder");
+                            var sValue = s.val();
+                            var isUserEnter = 0; // 是否为用户输入内容,placeholder允许用户的输入和默认内容一样
+                            if (pValue) {
+                                if (sValue == '') {
+                                    s.val(pValue);
+                                }
+                            }
+
+                            $(this)
+                                .focus(function() {
+                                    var s = $(this);
+                                    var pValue = s.attr("placeholder");
+                                    var sValue = s.val();
+                                    if (sValue && pValue) {
+                                        if (sValue == pValue && !isUserEnter) {
+                                            s.val('');
+                                        }
+                                    }
+                                })
+                                .blur(function() {
+                                    var s = $(this);
+                                    var pValue = s.attr("placeholder");
+                                    var sValue = s.val();
+                                    if (!sValue) {
+                                        s.val(pValue);
+                                        isUserEnter = 0;
+                                    }
+                                })
+                                .keyup(function(){
+                                    if ($(this).val() !== pValue) isUserEnter = 1;
+                                });
+
+
+                        });
+                    }
+                    //遍历所有密码框，添加placeholder模拟事件
+                    var elementsPass = form.find("input[type='password'][placeholder]");
+                    elementsPass.each(function(i) {
+                        var s = $(this);
+                        var pValue = s.attr("placeholder");
+                        var sValue = s.val();
+                        if (pValue) {
+                            if (sValue == '') {
+                                //DOM不支持type的修改，需要复制密码框属性，生成新的DOM
+                                var html = this.outerHTML || "";
+                                html = html.replace(/\s*type=(['"])?password\1/gi, " type=text placeholderfriend")
+                                    .replace(/\s*(?:value|on[a-z]+|name)(=(['"])?\S*\1)?/gi, " ")
+                                    .replace(/\s*placeholderfriend/, " placeholderfriend value='" + pValue
+                                        + "' " + "onfocus='placeholderfriendfocus(this);' ");
+                                var idValue = s.attr("id");
+                                if (idValue) {
+                                    s.attr("id", idValue + "placeholderfriend");
+                                }
+                                var clsValue = s.attr("class");
+                                if (clsValue) {
+                                    s.attr("class", clsValue + "placeholderfriend");
+                                }
+                                s.hide();
+                                s.after(html);
+                            }
+                        }
+                    });
+
+                    elementsPass.blur(function() {
+                        var s = $(this);
+                        var sValue = s.val();
+                        if (sValue == '') {
+                            var idValue = s.attr("id");
+                            if (idValue) {
+                                s.attr("id", idValue + "placeholderfriend");
+                            }
+                            var clsValue = s.attr("class");
+                            if (clsValue) {
+                                s.attr("class", clsValue + "placeholderfriend");
+                            }
+                            s.hide().next().show();
+                        }
+
+                    });
+
+                });
+            }
+            window.placeholderfriendfocus = placeholderfriend.focus;
+        })(jQuery);
+    </script>
 </head>
 <body  class="index">
 <div  class="wrapper">
-<!--header -->
-<div  class="top-bar ">
-<div  class="webContainer">
-    <div  class="top-box">
-        <ul  class="contact-bar">
-            <li  class="tel last">400-716-3021</li>
-        </ul>
-        <ul id="current_member" class="user-bar" style="float:right">
-            <li  class="active first"><a title="短信宝用户登入" href="http://www.smsbao.com/login">登录</a></li>
-            <li  class="last"><a title="短信宝用户注册" href="http://www.smsbao.com/reg">注册</a></li>
-        </ul>
-        <!--
-        <div class="search">
-            <form  name="formsearch" action="{dede:global.cfg_cmsurl/}/plus/search.php">
-                <div class="form">
-                    <input type="hidden" name="kwtype" value="0" />
-                    <input id="search-option" type="hidden" name="searchtype" value="title" />
-                    <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
-                    <button type="submit" class="search-submit"></button>
+    <!--header -->
+    <div  class="top-bar ">
+        <div  class="webContainer">
+            <div  class="top-box">
+                <ul  class="contact-bar">
+                    <li  class="tel last">400-716-3021</li>
+                </ul>
+                <ul id="current_member" class="user-bar" style="float:right">
+                    <li class="wfs"></li>
+                    <li  class="active first"><a title="短信宝用户登入" href="/login">登录</a></li>
+                    <li  class="last"><a title="短信宝用户注册" href="/reg">注册</a></li>
+                </ul>
+                <!--
+                <div class="search">
+                    <form  name="formsearch" action="{dede:global.cfg_cmsurl/}/plus/search.php">
+                        <div class="form">
+                            <input type="hidden" name="kwtype" value="0" />
+                            <input id="search-option" type="hidden" name="searchtype" value="title" />
+                            <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+                            <button type="submit" class="search-submit"></button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                -->
+            </div>
         </div>
-        -->
     </div>
-</div>
-</div>
 
-<script type="text/javascript">
-$().ready(function() {
-var $current_member = $("#current_member");
-var $login_box = $("#login_box");
+    <script type="text/javascript">
+        $().ready(function() {
+            var $current_member = $("#current_member");
+            var $login_box = $("#login_box");
 
-					$.ajax({
-                        url: "/common/current_member.jhtml",
-						//url: "http://www.smsbao.com/common/current_member.jhtml",
-						type: "GET",
-						dataType: "json",
-						cache: false,
-						success: function(message) {
-							if (message.isLogin == "true") {
+            $.ajax({
+                url: "/common/current_member.jhtml",
+                //url: "http://www.smsbao.com/common/current_member.jhtml",
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                success: function(message) {
+                    if (message.isLogin == "true") {
 
-                                                           $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
-                                                           $login_box.html("<div class='login-welcome'><h2 class='mr9'>欢迎您来到短信宝</h2><h3 class='mr9'>体验最好用的短信服务</h3></div><form class='login-form'><div class='login-btn-box'><h3 class='mr9'>您的短信宝账号是："+message.username+"</h3></div><a href='/member/index.jhtml'' class='web_sms_l_btn_h'>进入我的短信宝</a></form><div class='bottom-reg'></div>");
+                        $current_member.html("<li class='active first'><a  href='/member/index.jhtml'>"+message.username+"</a></li><li class='last'><a  href='/logout.jhtml'>退出</a></li>");
+                        $login_box.html("<div class='login-welcome'><h2 class='mr9'>欢迎您来到短信宝</h2><h3 class='mr9'>体验最好用的短信服务</h3></div><form class='login-form'><div class='login-btn-box'><h3 class='mr9'>您的短信宝账号是："+message.username+"</h3></div><a href='/member/index.jhtml'' class='web_sms_l_btn_h'>进入我的短信宝</a></form><div class='bottom-reg'></div>");
 
-							}
-                                                }
-					});
+                    }
+                }
+            });
 
-});
-</script>
+        });
+    </script>
 
 
 
@@ -302,14 +300,14 @@ var $login_box = $("#login_box");
         </div>
     </div>
 
-<script>
-    var pageIdentify = 'menu{dede:field.typeid/}';
-    if (pageIdentify) {
-        $("#"+pageIdentify).addClass('cur');
-    }
-</script>
+    <script>
+        var pageIdentify = 'menu{dede:field.typeid/}';
+        if (pageIdentify) {
+            $("#"+pageIdentify).addClass('cur');
+        }
+    </script>
 
-<!--主体内容开始-->
+    <!--主体内容开始-->
     <section class="banner">
         <div class="flashBox">
             <ul>
@@ -404,14 +402,14 @@ var $login_box = $("#login_box");
                     </div>
                 </div>
                 <div class="login-btn-box">
-                    <a href="http://www.smsbao.com/password/find.jhtml" class="forget">忘记密码？</a>
+                    <a href="/password/find.jhtml" class="forget">忘记密码？</a>
                     <a href="javascript:;" id="login-submit" class="login-btn" data-loading-text="Loading">登录</a>
                 </div>
                 <div class="tips">
                 </div>
             </form>
             <div class="bottom-reg">
-                <a href="http://www.smsbao.com/reg">立即注册</a>
+                <a href="/reg">立即注册</a>
             </div>
         </div>
         <div class="webProIntro"></div>
@@ -423,28 +421,70 @@ var $login_box = $("#login_box");
                 <img src="/images/v2/sms_w.png" alt="短信验证码——白">
                 <div class="spread_content">
                     <div class="cl"><h3>短信验证码</h3></div>
-                    <span>提供稳定可靠的短信验证码服务</span>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="present"><span>合作三大运营商，通道稳定无维护，提供各开发语言DEMO及插件，15分钟快速接入！</span></div>
+                <div class="more">
+                    <a href="/openapi/index.html#fw1">
+                        <img src="/images/v2/kfwd.png"/>
+                        <div style="clear:both;"></div>
+                        开发文档
+                    </a>
+                    <a href="/plugin/">
+                        <img src="/images/v2/cj.png"/>
+                        <div style="clear:both;"></div>
+                        建站插件
+                    </a>
                 </div>
             </li>
             <li>
                 <img src="/images/v2/voice.png" alt="语音验证码——白">
                 <div class="spread_content">
                     <div class="cl"><h3>语音验证码</h3></div>
-                    <span>提供高效快捷的语音验证码服务</span>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="present"><span>防刷单，避免固话、黑名单等短信盲区，防止客户流失。</span></div>
+                <div class="more">
+                    <a href="/openapi/index.html#fw1">
+                        <img src="/images/v2/kfwd.png"/>
+                        <div style="clear:both;"></div>
+                        开发文档
+                    </a>
+                    <a href="/plugin/">
+                        <img src="/images/v2/cj.png"/>
+                        <div style="clear:both;"></div>
+                        建站插件
+                    </a>
                 </div>
             </li>
             <li>
                 <img src="/images/v2/notice.png" alt="短信通知——白">
                 <div class="spread_content">
                     <div class="cl"><p>会员</p><h3>短信通知</h3></div>
-                    <span>提供优质廉价的短信通知</span>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="present"><span>无盲点覆盖三网，及时送达，支持多种开发语言，快速集成</span></div>
+                <div class="more">
+                    <a href="http://tassistant.smsbao.com/smstool/20" class="zs">
+                        <img src="/images/v2/xzs.png"/>
+                        <div style="clear:both;"></div>
+                        群发助手
+                    </a>
                 </div>
             </li>
             <li>
                 <img src="/images/v2/marketing.png" alt="短信营销——白">
                 <div class="spread_content">
                     <div class="cl"><p>会员</p><h3>短信营销</h3></div>
-                    <span>提供送达率100%的短信营销</span>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="present"><span>高并发、低资费、支持上行、无需开发，与会员实时互动；支持在线群发与接口接入</span></div>
+                <div class="more">
+                    <a href="http://tassistant.smsbao.com/smstool/21" class="zs">
+                        <img src="/images/v2/xzs.png"/>
+                        <div style="clear:both;"></div>
+                        群发助手
+                    </a>
                 </div>
             </li>
         </ul>
@@ -470,25 +510,23 @@ var $login_box = $("#login_box");
             <div class="service_right">
                 <div class="service-title">
                     <span>大家都在用</span>
-                    <a href="">立即使用</a>
                 </div>
                 <div class="right-content c-goods">
                     <ul>
-                        <li>长安互答使用了<a href="">淘宝客群发助手</a></li>
-                        <li>森科贸易使用了<a href="">订单提醒群发助手</a></li>
-                        <li>达飞金融使用了<a href="">招商广告群发助手</a></li>
-                        <li>黄河速运使用了<a href="">快递提醒群发助手</a></li>
-                        <li>圣佳诺使用了<a href="">淘宝客群发助手</a></li>
-                        <li>韵达快递使用了<a href="">快递提醒群发助手</a></li>
-                        <li>大地商务使用了<a href="">活动促销群发助手</a></li>
-                        <li>百汇堂使用了<a href="">祝福短信群发助手</a></li>
-                        <li>爱财网使用了<a href="">金融理财群发助手</a></li>
-                        <li>返佣惠使用了<a href="">招商广告群发助手</a></li>
-                        <li>百雀林使用了<a href="">快递提醒群发助手</a></li>
-                        <li>魔力客使用了<a href="">淘宝客群发助手</a></li>
-                        <li>大鹏金融使用了<a href="">金融理财群发助手</a></li>
-                        <li>汇赚网使用了<a href="">公众号推广群发助手</a></li>
-                        <li>大众售后使用了<a href="">汽车4s店群发助手</a></li>
+                        <li>用户sw**使用了短信群发助手</li>
+                        <li>用户1314*****充值了500元</li>
+                        <li>用户lt**使用了短信群发助手</li>
+                        <li>用户151***使用了短信群发助手</li>
+                        <li>用户gt**充值了1000元</li>
+                        <li>用户sw**使用了短信群发助手</li>
+                        <li>用户1341*****注册了短信宝账号</li>
+                        <li>用户st**使用了短信群发助手</li>
+                        <li>用户sw**使用了短信群发助手</li>
+                        <li>用户1504*****注册了短信宝账号</li>
+                        <li>用户dr**使用了短信群发助手</li>
+                        <li>用户fw**充值了100元</li>
+                        <li>用户sw**使用了短信群发助手</li>
+                        <li>用户1317*****注册了短信宝账号</li>
                     </ul>
                 </div>
             </div>
@@ -511,7 +549,7 @@ var $login_box = $("#login_box");
         <div class="content">
             <div class="ask">
                 <div class="ask-con">
-                    <a class="main" href="">
+                    <a class="main" href="/plus/list.php?tid=61">
                         <img src="/images/v2/5.jpg" alt="宝宝说">
                         <div class="blog-title">
                             <p>宝宝说:短信宝教您如何更好运用短信</p>
@@ -528,7 +566,7 @@ var $login_box = $("#login_box");
             </div>
             <div class="coding">
                 <div class="coding-con">
-                    <a class="main" href="">
+                    <a class="main" href="/plus/list.php?tid=62">
                         <img src="/images/v2/6.jpg" alt="coding">
                         <div class="blog-title">
                             <p>coding:加入我们,分享更好的代码</p>
@@ -546,40 +584,40 @@ var $login_box = $("#login_box");
         </div>
     </div>
 
-<div  class="main-box">
+    <div  class="main-box">
 
 
-    <div  class="share-box">
-        <div  class="webcontainer">
-            <div  class="content">
-            	<div class="web_home_link_box">
-                    <h3 class="artical-title" style="margin:5px 0 0 0; clear:both;">合作伙伴</h3>
-                    <ul>
-                        {dede:flink row='8' type='image' titlelen="24" typeid="1"}
-                        <li>[field:link /]</li>
-                        {/dede:flink}
-                    </ul>
-                    </dd>
+        <div  class="share-box">
+            <div  class="webcontainer">
+                <div  class="content">
+                    <div class="web_home_link_box">
+                        <h3 class="artical-title" style="margin:5px 0 0 0; clear:both;">合作伙伴</h3>
+                        <ul>
+                            {dede:flink row='8' type='image' titlelen="24" typeid="1"}
+                            <li>[field:link /]</li>
+                            {/dede:flink}
+                        </ul>
+                        </dd>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div  class="clear"></div>
+    <div  class="clear"></div>
 
     <div class="join">
         <div class="content">
             <h3>准备开始了吗？</h3>
-            <h4 class="details-1">注册,便能获取X条通用短信。</h4>
+            <h4 class="details-1">注册,便能获取3条试用短信。</h4>
             <h4 class="details-2">拥有完整权限，共您探索想要的任何服务。</h4>
-            <a class="login" href="">注册试用</a>
+            <a class="login" href="/reg">注册试用</a>
         </div>
     </div>
-<!--主体内容结束-->
+    <!--主体内容结束-->
 
 
-{dede:include filename="footer.htm"/}
-<input type="hidden" id="aa" name="xx" value="{dede:php} echo 111; {/dede:php}" />
+    {dede:include filename="footer.htm"/}
+    <input type="hidden" id="aa" name="xx" value="{dede:php} echo 111; {/dede:php}" />
 </div>
 <script>
     $(document).ready(function(){

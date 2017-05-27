@@ -217,11 +217,19 @@ ul, ol { padding: 0;}
 #spread ul{width:1210px;margin:0 auto;overflow:hidden;}
 #spread ul li{width:300px;float:left;min-height:100px;border-right:1px solid #3bad33;}
 #spread ul li:nth-child(1){border-left:1px solid #3bad33;}
-#spread ul li img{margin:20px 0 0 40px;float:left;}
+#spread ul li img{margin:0 0 0 40px;float:left;}
 #spread .spread_content{color:#fff;float:left;width:196px;overflow:hidden;}
-#spread .spread_content h3{font-size:26px;margin-top:20px;text-align:center;float:left;}
-#spread .spread_content span{margin:10px 0 0 20px;display:block;color:#d1caca;font-size:12px;}
-#spread .spread_content p{font-size:26px;display:block;float:left;margin-top:20px;}
+#spread .spread_content h3{font-size:26px;margin-top:14px;text-align:center;float:left;margin-bottom:5px;}
+#spread .log1{display:block;margin-left:60px;border-radius:3px;float:left;color:#fff;padding:5px 10px;border:1px solid #fff;font-size:12px;}
+#spread .log2{display:block;margin-left:35px;border-radius:3px;float:left;color:#fff;padding:5px 10px;border:1px solid #fff;font-size:12px;}
+#spread .present span{margin:7px 0 7px 20px;display:block;color:#e4e4e4;font-size:13px;text-indent:25px;}
+#spread .more{min-height:20px;overflow:hidden;border-top:2px solid #3bad33;width:285px;margin:0 auto;margin-top:20px;border-bottom:2px solid #3bad33;background:#387633;}
+#spread .more a{display:block;color:#fff;width:141px;float:left;text-align:center;line-height:30px;font-weight:bolder;padding-top:20px;padding-bottom:15px;}
+#spread .more a:first-child{border-right:2px solid #3BAD33;}
+#spread .more a:last-child{}
+#spread .more a img{margin:0 0 0 55px;width:35px;}
+#spread .more a:hover{background:#88AD85;color:#065400;}
+#spread .spread_content p{font-size:26px;display:block;float:left;margin-top:14px;}
 #spread .spread_content .cl{clear:both;overflow:hidden;margin-left:20px;}
 #service {overflow:hidden;padding:40px 0px;background:#f9fff7;}
 #service .service_all{width:1200px;margin:0 auto;margin-top:20px;overflow:hidden;}
@@ -274,3 +282,8 @@ ul, ol { padding: 0;}
 .join .login:hover{background:#2e481c;}
 .webContainer .product{width:445px;}
 .footer-box .first{float:left;display:block;margin:3px 10px;padding:5px;}
+.more .zs{border:none!important;width:282px!important;}
+.more .zs img{margin-left:124px!important;}
+#current_member .wfs img{float:left;}
+#current_member .wfs .num{float:left;margin-left:5px;height:15px;width:15px;background:#c33d3d;margin-top:9px;line-height:15px;text-align:center;border-radius:15px;}
+#current_member .wfs .num:hover{text-decoration:underline;color:#00ff00;}
